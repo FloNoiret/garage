@@ -1,0 +1,14 @@
+ /*Respect Charte Graphique*/
+a { 
+    color: #d92332;
+}
+
+.btn-primary {
+    background-color: #6472f6;
+}
+
+
+ /* Footer */
+.footer-title {
+    font-weight: bold;
+}
