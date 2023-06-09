@@ -1,14 +1,41 @@
  /*Respect Charte Graphique*/
-a { 
-    color: #d92332;
-}
+ body {
+    background-color: #F2F2F2 !important;
+    font-family: 'Barlow', sans-serif;
+    color:#262526;
+ }
 
-.btn-primary {
-    background-color: #6472f6;
-}
+ h1 {
+     font-family: 'Rajdhani', sans-serif;
+     font-weight: bold;
+     font-size: 34px;
+     color: #d92332;
+ }
+
+ h2 {
+     font-family: 'Rajdhani', sans-serif;
+     font-size: 32px;
+     color: #262526;
+ }
+
+ h3 {
+     font-family: 'Barlow', sans-serif;
+     font-size: 26px;
+     color: #D9777f;
+ }
+
+ a {
+     color: #d92332;
+ }
+
+ .btn-primary {
+     background-color: #6472f6;
+     border: none;
+ }
 
 
  /* Footer */
-.footer-title {
-    font-weight: bold;
-}
+ .footer-title {
+     font-family: 'Rajdhani', sans-serif;
+     font-weight: bold;
+ }
