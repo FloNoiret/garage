@@ -1,5 +1,5 @@
  /*Respect Charte Graphique*/
- body {
+body {
     background-color: #F2F2F2 !important;
     font-family: 'Barlow', sans-serif;
     color:#262526;
@@ -28,7 +28,7 @@
      color: #d92332;
  }
 
- .btn-primary {
+ .btn-purple {
      background-color: #6472f6;
      border: none;
  }
