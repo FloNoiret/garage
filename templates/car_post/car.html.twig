@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{# Change page title #}
+{% block title %}Véhicules d'Occasion{% endblock %}
+
+{% block body %}
+
+{# Car Post Card #}
+<div class="card m-5" style="width: 18rem;">
+  <img src="https://images.pexels.com/photos/733745/pexels-photo-733745.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top" alt="voiture de sport">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Prix</li>
+    <li class="list-group-item">Kilométrage</li>
+    <li class="list-group-item">Année de Mise en Circulation</li>
+    <li class="list-group-item"> Une question ? </li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Supprimer</a>
+    <a href="#" class="card-link">Modifier</a>
+  </div>
+</div>
+
+
+{% endblock %}

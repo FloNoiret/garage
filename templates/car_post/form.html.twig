@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{# Form to add car #}
+
+{{ form_start(car_post_form) }}
+	{{ form_rest(car_post_form) }}
+	<input type="submit" value="Publier">
+	{{ form_end(car_post_form) }}
+{% endblock %}
