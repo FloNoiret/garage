@@ -22,8 +22,8 @@ class CarPost
     #[ORM\Column(type: "text", length: 300)] 
     private string $content;
 
-    #[ORM\Column(type: "integer")]
-    private ?string $image = NULL;
+    #[ORM\Column(type: "string")]
+    private $image = NULL;
 
    #[ORM\Column(type: "integer")]
     private int $price;
@@ -31,7 +31,7 @@ class CarPost
      #[ORM\Column(type: "integer")] 
     private int $kilometer; 
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "datetime")]
     private $year; 
 
     /* private $user;*/ 
