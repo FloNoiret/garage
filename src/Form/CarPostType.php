@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class CarPostType extends AbstractType
 {
     /* Creation of the form*/ 
@@ -35,7 +36,7 @@ class CarPostType extends AbstractType
             'csrf_field_name' => '_token',
             // an arbitrary string used to generate the value of the token
             // using a different string for each form improves its security
-            'csrf_token_id'   => 'task_item',
+            'csrf_token_id'   => 'car_item',
         ]);
     }
 }

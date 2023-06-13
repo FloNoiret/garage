@@ -11,26 +11,25 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarPostController extends AbstractController
 {
-     /* Route & Controller to view car post */ 
+    /* Route & Controller to view car post */
     #[Route('/vehicules', name: 'vehicule')]
     public function index(): Response
     {
         return $this->render('car_post/car.html.twig');
     }
 
-    /* Route & Controller to create car post */ 
+    /* Route & Controller to create car post */
     #[Route('/vehicules/new', name: 'AddVehicule')]
     public function create(Request $request): Response
     {
-            $carpost = new CarPost();
-            $form = $this->createForm(CarPostType::class, $carpost);
-            $form->handleRequest($request);
+        $carpost = new CarPost();
+        $form = $this->createForm(CarPostType::class, $carpost);
+        $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-              dump($carpost);
-            }
-            return $this->render('car_post/form.html.twig', [
-                "car_post_form" => $form->createView()
-            ]);
+        if ($form->isSubmitted() && $form->isValid()) {
+        }
+        return $this->render('car_post/form.html.twig', [
+            "car_post_form" => $form->createView()
+        ]);
     }
 }
