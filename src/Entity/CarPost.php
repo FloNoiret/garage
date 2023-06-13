@@ -2,26 +2,39 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity()]
+#[ORM\Table(name: "car_publication")]
 class CarPost
 {
 
      /* Setting Form Variables */ 
 
+     #[ORM\Id()]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
+      #[ORM\Column(type: "integer")] 
     private int $id;
-
+ 
+    #[ORM\Column(type: "string", length: 60)]
     private ?string $title = NULL;
 
+    #[ORM\Column(type: "text", length: 300)] 
     private string $content;
 
+    #[ORM\Column(type: "integer")]
     private ?string $image = NULL;
 
+   #[ORM\Column(type: "integer")]
     private int $price;
 
+     #[ORM\Column(type: "integer")] 
     private int $kilometer; 
 
-    private int $year; 
+    #[ORM\Column(type: "string")]
+    private $year; 
 
-    private $user;
+    /* private $user;*/ 
 
      /* Setting Function to Get & Set Variables */ 
     public function getId(): int
@@ -76,24 +89,25 @@ class CarPost
 
     /**
      * Get the value of user
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
+     
+    * public function getUser()
+   * {
+    *    return $this->user;
+   * }
+*/
     /**
      * Set the value of user
      *
      * @return  self
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
+    
 
-        return $this;
-    }
-
+     *public function setUser($user)
+   * {
+    *    $this->user = $user;
+*
+    *    return $this;
+  *  }
+ */
     /**
      * Get the value of price
      */ 
