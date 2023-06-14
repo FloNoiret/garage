@@ -11,11 +11,11 @@ class CarPost
 
      /* Setting Form Variables */ 
 
-     #[ORM\Id()]
+    #[ORM\Id()]
     #[ORM\GeneratedValue(strategy: "AUTO")]
-      #[ORM\Column(type: "integer")] 
+    #[ORM\Column(type: "integer")]
     private int $id;
- 
+
     #[ORM\Column(type: "string", length: 60)]
     private ?string $title = NULL;
 
