@@ -11,7 +11,7 @@
 
 		{# Car Post Card #}
 		<div class="card m-5" style="width: 18rem;">
-			<img src={{carpost.image}} class="card-img-top" alt="voiture de sport">
+			<img src={{ asset('/assets/CarImage/')~carpost.image.name}} class="card-img-top" alt="voiture de sport">
 			<div class="card-body">
 				<h5 class="card-title">{{carpost.title}}</h5>
 				<p class="card-text">{{carpost.content}}</p>

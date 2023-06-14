@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CarPost;
+use App\Entity\Image;
 use App\Form\CarPostType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,9 +33,33 @@ class CarPostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $path = $this->getParameter('kernel.project_dir'). '/public/assets/CarImage';
+            /* Recupération des valeurs en objet CarPost */
             $entityManager = $doctrine->getManager();    /* Recupération instance entity manager */
-            $entityManager->persist($carpost); /* Ajout objet à entity manager */
-            $entityManager->flush(); /* Synchronisation BDD */
+
+            /* Récuperation de l'image */
+            $image = $carpost->getImage();
+
+            /* Récuperation du file soumis */
+            $file = $image->getFile();
+
+            /* Creation nom unique */
+            $name =  md5(uniqid()) . '.' . $file->guessExtension();
+
+            /* Deplace le fichier */
+            $file->move($path, $name);
+
+
+            /* Donne le nom à l'image */
+            $image->setName($name);
+
+            /* Ajout objet à entity manager */
+            $entityManager->persist($carpost);
+
+            /* Synchronisation BDD */
+            $entityManager->flush();
+
         }
         return $this->render('car_post/form.html.twig', [
             "car_post_form" => $form->createView()

@@ -22,7 +22,7 @@ class CarPost
     #[ORM\Column(type: "text", length: 300)] 
     private string $content;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\OneToOne(targetEntity: 'Image', cascade:["persist", "remove"])]
     private $image = NULL;
 
    #[ORM\Column(type: "integer")]
@@ -75,7 +75,7 @@ class CarPost
     }
 
 
-    public function getImage()
+    public function getImage():?Image
     {
         return $this->image;
     }

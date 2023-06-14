@@ -19,12 +19,14 @@ class CarPostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add("image", FileType::class, ["label" => "Télécharger une image", "required" => true])
+          
             ->add("title", TextType::class, ["label" => "Titre", "required" => true])
             ->add("content", TextareaType::class, ["label" => "Contenu", "required" => true])
             ->add("price", NumberType::class, ["label" => "Prix", "required" => true])
             ->add("kilometer", NumberType::class, ["label" => "Kilométrage", "required" => true])
-            ->add("Year", DateType::class, ["label" => "Date de Mise en Circulation", "required" => true]);
+            ->add("Year", DateType::class, ["label" => "Date de Mise en Circulation", "required" => true])
+            ->add("image", ImageType::class, ["label" => "Télécharger une image", "required" => true]);
+
     }
 
     /*Link entity with form*/
