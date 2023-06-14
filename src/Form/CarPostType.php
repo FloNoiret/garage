@@ -24,7 +24,7 @@ class CarPostType extends AbstractType
             ->add("content", TextareaType::class, ["label" => "Contenu", "required" => true])
             ->add("price", NumberType::class, ["label" => "Prix", "required" => true])
             ->add("kilometer", NumberType::class, ["label" => "Kilométrage", "required" => true])
-            ->add("Year", DateType::class, ["label" => "Date de Mise en Circulation", "required" => true])
+            ->add("Year", DateType::class, [ 'widget' => 'single_text', "label" => "Date de Mise en Circulation", "required" => true])
             ->add("image", ImageType::class, ["label" => "Télécharger une image", "required" => true]);
 
     }
