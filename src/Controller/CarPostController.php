@@ -59,6 +59,7 @@ class CarPostController extends AbstractController
 
             /* Synchronisation BDD */
             $entityManager->flush();
+            return $this->redirectToRoute("accueil");
 
         }
         return $this->render('car_post/form.html.twig', [

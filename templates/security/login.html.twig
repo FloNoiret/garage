@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1 class="text-center mt-5"> Se Connecter </h1>
+<h2 class="text-center"> Réservé au personnel du garage </h2>
+
+	{% if error %}
+		<div class="alert alert-danger">
+			{{error.messageKey}}
+		</div>
+	{% endif %}
+
+	<form method="post" class="container mt-5 mb-5">
+		<label for="username">
+			Nom d'utilisateur
+		</label>
+		<input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" required/>
+
+		<label for="password">
+			Mot de passe
+		</label>
+		<input type="password" id="password" name="_password" class="form-control" required/>
+
+		<input type="hidden" name="_target_path" value="/">
+
+		<button type="submit" class="btn btn-primary mt-3">
+			Connexion
+		</button>
+	</form>
+
+{% endblock %}

@@ -28,7 +28,7 @@
 			<header
 				class="sticky-top">
 
-				{# Barre de Navigation #}
+				{# Navigation Bar #}
 				<nav class="navbar navbar-expand-lg navbar-light bg-white">
 					<div
 						class="container-fluid">
@@ -36,9 +36,12 @@
 						<a class="navbar-brand" href="#">
 							<img src="/assets/upload/logo_Garage_V.Parrot.png" alt="logo du garage V.Parrot" height="50">
 						</a>
+						{# Responsive Mobile #}
 						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
+
+						{# Main Navigation Menu #}
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item">
@@ -50,98 +53,127 @@
 								<li class="nav-item">
 									<a class="nav-link" href="#">Nous Contacter</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Connexion</a>
-								</li>
+								{# Navigation when user is connected #}
+								{% if app.user %}
+									<li class="nav-item">
+										<p class="nav-link">
+											Bonjour
+											{{ app.user.username }}
+										</p>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="/logout">
+											Se Déconnecter
+										</a>
+									</li>
+					
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+											Actions
+										</a>
+										<ul class="dropdown-menu">
+
+											<li>
+												<a class="dropdown-item" href="/vehicules/new">Ajouter un Véhicule</a>
+											</li>
+											<li><hr class="dropdown-divider"></li>
+											{% if app.user.username == 'Parrot' %}
+												<li>
+													<a class="dropdown-item" href="/user/new">Ajouter un employé</a>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#">Changer les horraires</a>
+												</li>
+												<li>
+													<a class="dropdown-item" href="#">Modifier les services du garage</a>
+												</li>
+											{% endif %}
+										</ul>
+									</li>
+								{% else %}
+									<li class="nav-item">
+										<a class="nav-link" href="/login">
+											Se Connecter
+										</a>
+									</li>
+								{% endif %}
 							</ul>
 						</div>
-					</div>
-				</nav>
-			</header>
-		{% endblock %}
+					</header>
+				{% endblock %}
+				{# Contenu adaptatif #}
+				{% block body %}{% endblock %}
 
-		{# Contenu adaptatif #}
-		{% block body %}{% endblock %}
+				{# Footer #}
+				{% block footer %}
 
-
-		{# Footer #}
-		{% block footer %}
-			<footer
-				class=" bg-white d-flex flex-sm-column align-items-sm-center flex-lg-row justify-content-lg-around p-4">
-
-				{# Logo #}
-				<img
-				src="/assets/upload/logo_Garage_V.Parrot.png" alt="Garage V.Parrot" height="100%">
-
-				{# Adresse #}
-				<address class="p-2 m-6">
-					10 boulevard des Récollets
-					<br>
-					31000 Toulouse
-					<br>
-					<a href="tel:+33102030405">Tel: 01 02 03 04 05</a>
-				</address>
-
-				{# Horraire d'Ouverture #}
-				<div>
-					<table>
-						<thead>
-							<p class="footer-title">
-								Horraires d'ouverture
-							</p>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">Lundi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Mardi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Mercredi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Jeudi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Vendredi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Samedi</th>
-								<td>8h45 - 12h,</td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">Dimanche</th>
-								<td>Fermé</td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-
-				{# Formulaire de Contact #}
-				<div>
-					<p class="footer-title">Nous Contacter
-					</p>
-					<form>
-						<input class="form-control" type="email" name="email" placeholder="Email"/>
-						<textarea class="form-control mt-2" type="text" name="message" placeholder="Votre message..."></textarea>
-						<br>
-						<input class="btn btn-primary mt-2" type="submit" value="Envoyer">
-					</form>
-				</div>
-			</footer>
-		{% endblock %}
+					<footer
+						class=" bg-white d-flex flex-sm-column align-items-sm-center flex-lg-row justify-content-lg-around p-4">
+						{# Logo #}
+						<img
+						src="/assets/upload/logo_Garage_V.Parrot.png" alt="Garage V.Parrot" height="100%">
+						{# Adresse #}
+						<address class="p-2 m-6">10 boulevard des Récollets<br>
+							31000 Toulouse<br>
+							<a href="tel:+33102030405">Tel: 01 02 03 04 05</a>
+						</address>
+						{# Horraire d'Ouverture #}
+						<div>
+							<table>
+								<thead>
+									<p class="footer-title">
+										Horraires d'ouverture
+									</p>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">Lundi</th>
+										<td>8h45 - 12h,</td>
+										<td>14h - 18h</td>
+									</tr>
+									<tr>
+										<th scope="row">Mardi</th>
+										<td>8h45 - 12h,</td>
+										<td>14h - 18h</td>
+									</tr>
+									<tr>
+										<th scope="row">Mercredi</th>
+										<td>8h45 - 12h,</td>
+										<td>14h - 18h</td>
+									</tr>
+									<tr>
+										<th scope="row">Jeudi</th>
+										<td>8h45 - 12h,</td>
+										<td>14h - 18h</td>
+									</tr>
+									<tr>
+										<th scope="row">Vendredi</th>
+										<td>8h45 - 12h,</td>
+										<td>14h - 18h</td>
+									</tr>
+									<tr>
+										<th scope="row">Samedi</th>
+										<td>8h45 - 12h,</td>
+										<td></td>
+									</tr>
+									<tr>
+										<th scope="row">Dimanche</th>
+										<td>Fermé</td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>{# Formulaire de Contact #}<div>
+							<p class="footer-title">Nous Contacter</p>
+							<form>
+								<input class="form-control" type="email" name="email" placeholder="Email"/>
+								<textarea class="form-control mt-2" type="text" name="message" placeholder="Votre message..."></textarea>
+								<br>
+								<input class="btn btn-primary mt-2" type="submit" value="Envoyer"></form>
+						</div>
+					</footer>
+				{% endblock %}
+			</body>
+		</body>
 	</body>
-</html>
+</html></body></html>
