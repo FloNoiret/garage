@@ -66,7 +66,7 @@
 											Se Déconnecter
 										</a>
 									</li>
-					
+
 									<li class="nav-item dropdown">
 										<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 											Actions
@@ -76,8 +76,17 @@
 											<li>
 												<a class="dropdown-item" href="/vehicules/new">Ajouter un Véhicule</a>
 											</li>
-											<li><hr class="dropdown-divider"></li>
+											<li>
+												<a class="dropdown-item" href="/vehicules">Supprimer un véhicule</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="#">Voir les demandes de contact</a>
+											</li>
+											<li>
+												<a class="dropdown-item" href="#">Gérer les avis clients</a>
+											</li>
 											{% if app.user.username == 'Parrot' %}
+												<li><hr class="dropdown-divider"></li>
 												<li>
 													<a class="dropdown-item" href="/user/new">Ajouter un employé</a>
 												</li>
