@@ -71,6 +71,7 @@ class CarPostController extends AbstractController
     #[Route('/vehicules/delete/{id<\d+>}', name: 'delete-vehicule')]
     public function delete(CarPost $carpost, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $entityManager = $doctrine->getManager();
         $entityManager->remove($carpost);
         $entityManager->flush();

@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
     {
         
         $parrot = new User($this->passwordHasher);
-        $parrot->setUsername("Parrot")-> setPassword("admin");
+        $parrot->setUsername("Parrot")-> setPassword("admin")-> setRoles(array('ROLE_ADMIN'));
         $manager->persist($parrot);
 
         $manager->flush();
