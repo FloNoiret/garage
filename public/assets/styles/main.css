@@ -1,8 +1,14 @@
  /*Respect Charte Graphique*/
-body {
-    background-color: #F2F2F2 !important;
-    font-family: 'Barlow', sans-serif;
-    color:#262526;
+
+ /* Header */
+
+
+ /* Body */
+
+ body {
+     background-color: #F2F2F2 !important;
+     font-family: 'Barlow', sans-serif;
+     color: #262526;
  }
 
  h1 {
