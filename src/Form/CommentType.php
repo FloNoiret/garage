@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\CommentPost;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,12 +19,15 @@ class CommentType extends AbstractType
     {
         $builder
             ->add("author", TextType::class, ["label" => "Votre Nom", "required" => true])
-            ->add("grade", RangeType::class, [ 'attr' => [
-                'min' => 1,
-                'max' => 5
-            ],"label" => "Note", "required" => true])
+            ->add("grade", ChoiceType::class, ['choices' => [
+                '5/5 (Satisfait) ' => '5',
+                '4/5 (Bien)' => '4',
+                '3/5 (Moyen)' => '3',
+                '2/5 (Peu satisfait)' => '2',
+                '1/5 (Pas du tout satisfait)' => '1',
+            ], "label" => "Qu'avez-vous pensez de nos services ? ", "required" => true])
             ->add("title", TextType::class, ["label" => "Titre", "required" => true])
-            ->add("content", TextareaType::class, ["label" => "Contenu", "required" => true]);
+            ->add("content", TextareaType::class, ["label" => "Ajouter un commentaire", "required" => true]);
     }
 
     /*Link entity with form*/

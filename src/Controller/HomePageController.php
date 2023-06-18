@@ -13,18 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
+
     #[Route('/', name: 'accueil')]
     public function index(ManagerRegistry $doctrine): Response
     {
+        /* Route & Controller comment */
         $repository = $doctrine->getRepository(CommentPost::class);
         $comments = $repository->findAll();
         return $this->render('home_page/home.html.twig', [
             "comments" => $comments
         ]);
     }
-
-    /* Route & Controller to view comment */
-        
 
     #[Route('/comment/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response

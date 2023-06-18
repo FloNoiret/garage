@@ -16,17 +16,38 @@
 			Un paragraphe
 		</p>
 	</div>
-	{% for comment in comments %}
-	{# Comment section 	 #}
-	<div id="comment">
-	<div class="card" style="width: 18rem;">
-	  <div class="card-body">
-	    <h5 class="card-title">{{comment.title}}</h5>
-	    <i class="card-subtitle mb-2 text-danger">{{comment.grade}}/5</i>
-	    <p class="card-text"> {{comment.content}}</p>
-	    <a href="/comment/delete/{id<\d+>}" class="card-link">Supprimer</a>
-	    <a href="#" class="card-link">Another link</a>
-	  </div>
-	</div>
-{% endfor %}
+
+	<section class="pt-5 pb-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<h3 class="mb-3">Avis Client
+					</h3>
+				</div>
+				<div class="col-12">
+					<div class="row">
+						{% for comment in comments|slice(0,6) %}
+							<div class="col-md-4 mb-3">
+								<div class="card">
+									<div class="card-body">
+										<div class="d-flex justify-content-between"> <h5 class="card-title">{{comment.title}}</h5>
+										<i class="card-subtitle mb-2 text-danger">{{comment.grade}}/5</i> </div>
+										<p class="card-text mt-2">
+											{{comment.content}}</p>
+										<p class="text-muted small">
+											Ecrit par {{comment.author}}
+										</p>
+										{% if app.user %}
+											<a href="/comment/delete/{id<\d+>}" class="card-link">Supprimer</a>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<a href="/comment/new" class="d-flex justify-content-center"> Votre avis nous intéresse ! </a>
+			</div>
+		</div>
+	</section>
 {% endblock %}
