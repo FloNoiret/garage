@@ -51,7 +51,7 @@ class UserType extends AbstractType
             'csrf_field_name' => '_token',
             // an arbitrary string used to generate the value of the token
             // using a different string for each form improves its security
-            'csrf_token_id'   => 'car_item',
+            'csrf_token_id'   => 'user_item',
         ]);
     }
 }

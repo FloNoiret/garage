@@ -1,12 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Garage V.Parrot{% endblock %}
+{% block title %}Garage V.Parrot
+{% endblock %}
 
 {% block body %}
-<div>
-<h1> Garage V.Parrot</h1>
-<h2> Nos Services</h2>
-<h3> Révision de votre véhicule </h3>
-<p> Un paragraphe </p>
-</div>
+	<div>
+		<h1>
+			Garage V.Parrot</h1>
+		<h2>
+			Nos Services</h2>
+		<h3>
+			Révision de votre véhicule
+		</h3>
+		<p>
+			Un paragraphe
+		</p>
+	</div>
+	{% for comment in comments %}
+	{# Comment section 	 #}
+	<div id="comment">
+	<div class="card" style="width: 18rem;">
+	  <div class="card-body">
+	    <h5 class="card-title">{{comment.title}}</h5>
+	    <i class="card-subtitle mb-2 text-danger">{{comment.grade}}/5</i>
+	    <p class="card-text"> {{comment.content}}</p>
+	    <a href="/comment/delete/{id<\d+>}" class="card-link">Supprimer</a>
+	    <a href="#" class="card-link">Another link</a>
+	  </div>
+	</div>
+{% endfor %}
 {% endblock %}

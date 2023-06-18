@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\CarPost;
-use App\Entity\Image;
 use App\Form\CarPostType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
