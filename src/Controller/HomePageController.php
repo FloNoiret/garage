@@ -50,6 +50,6 @@ class HomePageController extends AbstractController
         $entityManager = $doctrine->getManager();
         $entityManager->remove($comment);
         $entityManager->flush();
-        return $this->redirectToRoute("/");
+        return $this->redirectToRoute("accueil");
     }
 }

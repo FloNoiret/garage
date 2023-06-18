@@ -38,7 +38,7 @@
 											Ecrit par {{comment.author}}
 										</p>
 										{% if app.user %}
-											<a href="/comment/delete/{id<\d+>}" class="card-link">Supprimer</a>
+											<a href="{{ path('delete-comment', {'id':comment.id}) }}" class="card-link">Supprimer</a>
 										{% endif %}
 									</div>
 								</div>
