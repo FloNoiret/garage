@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\CommentPost;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,8 +27,10 @@ class CommentType extends AbstractType
                 '2/5 (Peu satisfait)' => '2',
                 '1/5 (Pas du tout satisfait)' => '1',
             ], "label" => "Qu'avez-vous pensez de nos services ? ", "required" => true])
-            ->add("title", TextType::class, ["label" => "Titre", "required" => true])
-            ->add("content", TextareaType::class, ["label" => "Ajouter un commentaire", "required" => true]);
+            -> add("title", TextType::class, ["label" => "Titre", "required" => true])
+            -> add("content", TextareaType::class, ["label" => "Ajouter un commentaire", "required" => true])
+            -> add('approved', HiddenType::class, [
+                'data' => '0', ]);
     }
 
     /*Link entity with form*/
@@ -42,5 +45,19 @@ class CommentType extends AbstractType
             // using a different string for each form improves its security
             'csrf_token_id'   => 'comment_item',
         ]);
+    }
+}
+
+
+class CommentApprovalType extends AbstractType
+{
+    /* Creation of the form*/
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add("approved", ChoiceType::class, ['choices' => [
+                'Approuver ' => '1',
+                'Retirer l\'Approbation' => '0',
+            ], "label" => "Que souhaitez-vous faire ? ", "required" => true]);
     }
 }

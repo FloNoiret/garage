@@ -1,21 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Garage V.Parrot
+{% block title %}Hello CommentController!
 {% endblock %}
 
 {% block body %}
-	<div>
-		<h1>
-			Garage V.Parrot</h1>
-		<h2>
-			Nos Services</h2>
-		<h3>
-			Révision de votre véhicule
-		</h3>
-		<p>
-			Un paragraphe
-		</p>
-	</div>
 	<section class="pt-5 pb-5">
 		<div class="container">
 			<div class="row">
@@ -25,12 +13,8 @@
 				</div>
 				<div class="col-12">
 					<div class="row">
-				
-					
-					
-						{% for comment in comments|slice(0,6) %}
-						{% if comment.approved == 1 %}
-							<div  class="col-md-4 mb-3">
+						{% for comment in comments %}
+							<div class="col-md-4 mb-3">
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between">
@@ -43,17 +27,15 @@
 											Ecrit par
 											{{comment.author}}
 										</p>
+										<a href="{{ path('delete-comment', {'id':comment.id}) }}" class="card-link">Supprimer</a>
+										<a href="{{ path('approve-comment', {'id':comment.id}) }}" class="card-link">Approuver</a>
 									</div>
 								</div>
 							</div>
-							{% endif %}
 						{% endfor %}
-						
 					</div>
 				</div>
-				<a href="/comment/new" class="d-flex justify-content-center">
-					Votre avis nous intéresse !
-				</a>
+
 			</div>
 		</div>
 	</section>
