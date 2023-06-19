@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
-
     #[Route('/', name: 'accueil')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -24,5 +23,4 @@ class HomePageController extends AbstractController
             "comments" => $comments
         ]);
     }
-
 }
