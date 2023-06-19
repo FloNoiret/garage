@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\CommentPost;
-use App\Form\CommentType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

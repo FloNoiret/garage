@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer les horraires{% endblock %}
+
+{% block body %}
+<div class="container m-5">
+		<h1 class="text-center mt-5">
+			Changer les horraires d'ouvertures
+		</h1>
+		{{ form_start(timetable_form) }}
+		{{ form_rest(timetable_form) }}
+		<input type="submit" value="Mettre à jour" class="btn btn-danger mt-2">
+		{{ form_end(timetable_form) }}
+
+	</div>
+{% endblock %}
