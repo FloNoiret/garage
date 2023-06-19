@@ -12,10 +12,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TimeController extends AbstractController
 {
+
+     /* Route & Controller to view*/
     #[Route('/time', name: 'time')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        /* Route & Controller comment */
         $repository = $doctrine->getRepository(TimeTable::class);
         $timetables = $repository->findAll();
         return $this->render('time/time.html.twig', [
@@ -23,9 +24,11 @@ class TimeController extends AbstractController
         ]);
     }
 
+    /* Route & Controller to get data*/
     #[Route('/timetable')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $timetable = new TimeTable();
         $timetable_form = $this->createForm(TimeTableType::class, $timetable);
         $timetable_form->handleRequest($request);
@@ -40,4 +43,6 @@ class TimeController extends AbstractController
             "timetable_form" => $timetable_form->createView()
         ]);
     }
+
+     /* Route & Controller to modify data*/
 }

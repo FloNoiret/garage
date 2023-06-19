@@ -1,56 +1,130 @@
-{% extends 'base.html.twig' %}
-
-{% block title %} Nos horraires d'Ouverture
-{% endblock %}
-
-{% block body %}
 {% for timetable in timetables %}
-				<div>
-					<table>
-						<thead>
-							<p class="footer-title">
-								Horraires d'ouverture
-							</p>
-						</thead>
-						<tbody>
-							<tr>
-								<th scope="row">Lundi</th>
-								<td>{{timetable.mondayAM|date('H:i:s')|slice(0,5)}} - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Mardi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Mercredi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Jeudi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Vendredi</th>
-								<td>8h45 - 12h,</td>
-								<td>14h - 18h</td>
-							</tr>
-							<tr>
-								<th scope="row">Samedi</th>
-								<td>8h45 - 12h,</td>
-								<td></td>
-							</tr>
-							<tr>
-								<th scope="row">Dimanche</th>
-								<td>Fermé</td>
-								<td></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-{% endfor %}
+	<div>
+		<table>
+			<thead>
+				<p class="footer-title">
+					Horraires d'ouverture
+				</p>
 
-{% endblock %}
+			</thead>
+
+			{# Opening hours table #}
+			<tbody>
+				<tr>
+					{# Monday #}
+					<th scope="row">Lundi</th>
+					{% if timetable.mondayAM|date('H:i:s') and timetable.mondayPM|date('H:i:s') == "00:00:00" %} 	{# Condition to get a "Close" message instead of opening hours #}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>
+							{{timetable.mondayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closemondayAM|date('H:i:s')|slice(0,5)}},
+
+						</td>
+						<td>{{timetable.mondayPM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closemondayPM|date('H:i:s')|slice(0,5)}}</td>
+					{% endif %}
+				</tr>
+				{# Tuesday #}
+				<tr>
+					<th scope="row">Mardi</th>
+					{% if timetable.tuesdayAM|date('H:i:s') and timetable.tuesdayPM|date('H:i:s') == "00:00:00" %}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>{{timetable.tuesdayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closetuesdayAM|date('H:i:s')|slice(0,5)}},</td>
+						<td>{{timetable.tuesdayPM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closetuesdayPM|date('H:i:s')|slice(0,5)}}</td>
+					{% endif %}
+				</tr>
+				{# Wednesday #}
+				<tr>
+					<th scope="row">Mercredi</th>
+					{% if timetable.wednesdayAM|date('H:i:s') and timetable.wednesdayPM|date('H:i:s') == "00:00:00" %}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>{{timetable.wednesdayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closewednesdayAM|date('H:i:s')|slice(0,5)}},</td>
+						<td>{{timetable.wednesdayPM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closewednesdayPM|date('H:i:s')|slice(0,5)}}</td>
+					{% endif %}
+				</tr>
+				{# Thursday #}
+				<tr>
+					<th scope="row">Jeudi</th>
+					{% if timetable.thursdayAM|date('H:i:s') and timetable.thursdayPM|date('H:i:s') == "00:00:00" %}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>{{timetable.thursdayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closethursdayAM|date('H:i:s')|slice(0,5)}},</td>
+						<td>{{timetable.thursdayPM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closethursdayPM|date('H:i:s')|slice(0,5)}}</td>
+					{% endif %}
+				</tr>
+
+				{# Friday #}
+				<tr>
+					<th scope="row">Vendredi</th>
+					{% if timetable.fridayAM|date('H:i:s') and timetable.fridayPM|date('H:i:s') == "00:00:00" %}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>{{timetable.fridayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closefridayAM|date('H:i:s')|slice(0,5)}},</td>
+						<td>{{timetable.fridayPM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closefridayPM|date('H:i:s')|slice(0,5)}}</td>
+					{% endif %}
+				</tr>
+				{# Saturday #}
+				<tr>
+					<th scope="row">Samedi</th>
+					{% if timetable.saturdayAM|date('H:i:s') and timetable.saturdayPM|date('H:i:s') == "00:00:00" %}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>
+							{{timetable.saturdayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closesaturdayAM|date('H:i:s')|slice(0,5)}},</td>
+						<td>{{timetable.saturdayPM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closesaturdayPM|date('H:i:s')|slice(0,5)}},</td>
+					{% endif %}
+				</tr>
+				{# Sunday #}
+				<tr>
+					<th scope="row">Dimanche</th>
+					{% if timetable.sundayAM|date('H:i:s') and timetable.sundayPM|date('H:i:s') == "00:00:00" %}
+						<td>Fermé
+						</td>
+					{% else %}
+						<td>
+
+							{{timetable.sundayAM|date('H:i:s')|slice(0,5)}}
+							-
+							{{timetable.closesundayAM|date('H:i:s')|slice(0,5)}},</td>
+					</td>
+					<td>
+						{{timetable.sundayPM|date('H:i:s')|slice(0,5)}}
+						-
+						{{timetable.closesundayPM|date('H:i:s')|slice(0,5)}}
+					</td>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+{% endfor %}
