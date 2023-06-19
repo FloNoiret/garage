@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TimeController extends AbstractController
 {
 
-     /* Route & Controller to view*/
+    /* Route & Controller to view*/
     #[Route('/time', name: 'time')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -24,7 +24,7 @@ class TimeController extends AbstractController
         ]);
     }
 
-    /* Route & Controller to get data*/
+    /* Route & Controller to get frist data
     #[Route('/timetable')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -42,7 +42,22 @@ class TimeController extends AbstractController
         return $this->render('time/index.html.twig', [
             "timetable_form" => $timetable_form->createView()
         ]);
-    }
+    }*/
 
-     /* Route & Controller to modify data*/
+    /*  Modify data*/
+    #[Route('/time/edit/{id<\d+>}', name: "edit-time")]
+    public function update(Request $request, TimeTable $timetable, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        $timetable_form = $this->createForm(TimeTableType::class, $timetable);
+        $timetable_form->handleRequest($request);
+        if ($timetable_form->isSubmitted() && $timetable_form->isValid()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute("time");
+        }
+        return $this->render('time/index.html.twig', [
+            "timetable_form" => $timetable_form->createView()
+        ]);
+    }
 }
