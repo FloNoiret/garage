@@ -16,12 +16,13 @@ class TimeController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         /* Route & Controller comment */
-        $repository = $doctrine->getRepository(TimeTableType::class);
-        $timetable = $repository->findAll();
-        return $this->render('time/timetable.html.twig', [
-            "timetable" => $timetable
+        $repository = $doctrine->getRepository(TimeTable::class);
+        $timetables = $repository->findAll();
+        return $this->render('time/time.html.twig', [
+            "timetables" => $timetables
         ]);
     }
+
     #[Route('/timetable')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -33,7 +34,7 @@ class TimeController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($timetable);
             $entityManager->flush();
-            return $this->redirectToRoute("timetable");
+            return $this->redirectToRoute("time");
         }
         return $this->render('time/index.html.twig', [
             "timetable_form" => $timetable_form->createView()

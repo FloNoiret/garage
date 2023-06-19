@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Nos horraires d'Ouverture
+{% endblock %}
+
+{% block body %}
+{% for timetable in timetables %}
+				<div>
+					<table>
+						<thead>
+							<p class="footer-title">
+								Horraires d'ouverture
+							</p>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Lundi</th>
+								<td>{{timetable.mondayAM|date('H:i:s')|slice(0,5)}} - 12h,</td>
+								<td>14h - 18h</td>
+							</tr>
+							<tr>
+								<th scope="row">Mardi</th>
+								<td>8h45 - 12h,</td>
+								<td>14h - 18h</td>
+							</tr>
+							<tr>
+								<th scope="row">Mercredi</th>
+								<td>8h45 - 12h,</td>
+								<td>14h - 18h</td>
+							</tr>
+							<tr>
+								<th scope="row">Jeudi</th>
+								<td>8h45 - 12h,</td>
+								<td>14h - 18h</td>
+							</tr>
+							<tr>
+								<th scope="row">Vendredi</th>
+								<td>8h45 - 12h,</td>
+								<td>14h - 18h</td>
+							</tr>
+							<tr>
+								<th scope="row">Samedi</th>
+								<td>8h45 - 12h,</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th scope="row">Dimanche</th>
+								<td>Fermé</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+{% endfor %}
+
+{% endblock %}
