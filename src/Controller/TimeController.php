@@ -6,6 +6,7 @@ use App\Entity\TimeTable;
 use App\Form\TimeTableType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TimeController extends AbstractController
 {
 
-    /* Route & Controller to view*/
+    /* Route & Controller to view
     #[Route('/time', name: 'time')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -39,7 +40,7 @@ class TimeController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute("time");
         }
-        return $this->render('time/index.html.twig', [
+        return $this->render('time/form.html.twig', [
             "timetable_form" => $timetable_form->createView()
         ]);
     }*/
@@ -54,9 +55,9 @@ class TimeController extends AbstractController
         if ($timetable_form->isSubmitted() && $timetable_form->isValid()) {
             $em = $doctrine->getManager();
             $em->flush();
-            return $this->redirectToRoute("time");
+            return $this->redirectToRoute("accueil");
         }
-        return $this->render('time/index.html.twig', [
+        return $this->render('time/form.html.twig', [
             "timetable_form" => $timetable_form->createView()
         ]);
     }
