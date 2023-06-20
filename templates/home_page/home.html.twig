@@ -9,13 +9,34 @@
 			Garage V.Parrot</h1>
 		<h2>
 			Nos Services</h2>
-		<h3>
-			Révision de votre véhicule
-		</h3>
-		<p>
-			Un paragraphe
-		</p>
-	</div>
+
+		<div class="card mt-2">
+			<div class="card-body">
+				<h3 class="card-title">Révision</h3>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			</div>
+		</div>
+
+		<div class="card mt-2">
+			<div class="card-body">
+				<h3 class="card-title">Climatisation</h3>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			</div>
+		</div>
+
+		<div class="card mt-2">
+			<div class="card-body">
+				<h3 class="card-title">Freinage</h3>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			</div>
+		</div>
+
+		<div class="card mt-2">
+			<div class="card-body">
+				<h3 class="card-title">Vidange</h3>
+				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+			</div>
+		</div>
 
 	{# Comment Section #}
 	<section class="pt-5 pb-5">
@@ -27,30 +48,31 @@
 				</div>
 				<div class="col-12">
 					<div class="row">
-				
-					
-					
+
+
 						{% for comment in comments|slice(0,7) %}
-						{% if comment.approved == 1 %}
-							<div  class="col-md-4 mb-3">
-								<div class="card">
-									<div class="card-body">
-										<div class="d-flex justify-content-between">
-											<h5 class="card-title">{{comment.title}}</h5>
-											<i class="card-subtitle mb-2 text-danger">{{comment.grade}}/5</i>
+							{% if comment.approved == 1 %}
+								<div class="col-md-4 mb-3">
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex justify-content-between">
+												<h5 class="card-title">{{comment.title}}</h5>
+												<i class="card-subtitle mb-2 text-danger">{{comment.grade}}/5</i>
+											</div>
+											<p class="card-text mt-2">
+												{{comment.content}}
+											</p>
+											<p class="text-muted small">
+												<em>
+													Ecrit par
+													{{comment.author}}</em>
+											</p>
 										</div>
-										<p class="card-text mt-2">
-											{{comment.content}} </p>
-										<p class="text-muted small"> <em>
-											Ecrit par
-											{{comment.author}}</em>
-										</p>
 									</div>
 								</div>
-							</div>
 							{% endif %}
 						{% endfor %}
-						
+
 					</div>
 				</div>
 				<a href="/comment/new" class="d-flex justify-content-center">
