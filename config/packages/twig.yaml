@@ -3,6 +3,7 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
      timetable: '@App\Twig\TimeTableExtension'
+     comment: '@App\Twig\CommentExtension'
 
 when@test:
     twig:

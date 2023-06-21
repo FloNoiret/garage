@@ -4,39 +4,45 @@
 {% endblock %}
 
 {% block body %}
-	<div>
-		<h1>
-			Garage V.Parrot</h1>
-		<h2>
-			Nos Services</h2>
-
-		<div class="card mt-2">
-			<div class="card-body">
-				<h3 class="card-title">Révision</h3>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+	<section>
+		{# Service Section #}
+		<div class="bg-danger p-5 rounded">
+			<div class="container ">
+				<h2 id="service" class="text-white">
+					Les Services du Garage Parrot</h2>
+				<div>
+					{% for service in services %}
+						<div class="card mt-1 mb-1">
+							<div class="card-body">
+								<h3 class="card-title">{{service.title}}</h3>
+								<p class="card-text">{{service.content}}</p>
+								{% if app.user %}
+									{% if app.user.username == 'Parrot' %}
+										<div class="card-body">
+											<a href="{{ path('delete-service', {'id':service.id}) }}" class="card-link">Supprimer</a>
+											<a href="{{ path('edit-service', {'id':service.id}) }}" class="card-link">Modifier</a>
+										</div>
+									</div>
+								</div>
+								<div class=" d-flex justify-content-center m-5">
+									<a href="/service/new" class="btn btn-danger">Ajouter un service</a>
+								</div>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+				</div>
 			</div>
 		</div>
+	</section>
 
-		<div class="card mt-2">
-			<div class="card-body">
-				<h3 class="card-title">Climatisation</h3>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			</div>
-		</div>
+	{# Car Section #}
+	<section>
+			<h1 class="text-center">
+				Bienvenue au Garage V.Parrot
+			</h1>
 
-		<div class="card mt-2">
-			<div class="card-body">
-				<h3 class="card-title">Freinage</h3>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			</div>
 		</div>
-
-		<div class="card mt-2">
-			<div class="card-body">
-				<h3 class="card-title">Vidange</h3>
-				<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-			</div>
-		</div>
+	</section>
 
 	{# Comment Section #}
 	<section class="pt-5 pb-5">
@@ -50,7 +56,7 @@
 					<div class="row">
 
 
-						{% for comment in comments|slice(0,7) %}
+						{% for comment in comment.getComment %}
 							{% if comment.approved == 1 %}
 								<div class="col-md-4 mb-3">
 									<div class="card">
@@ -65,7 +71,8 @@
 											<p class="text-muted small">
 												<em>
 													Ecrit par
-													{{comment.author}}</em>
+													{{comment.author}}
+												</em>
 											</p>
 										</div>
 									</div>

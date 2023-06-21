@@ -2,24 +2,24 @@
 
 namespace App\Controller;
 
-use App\Entity\CommentPost;
+use App\Entity\Service;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
 class HomePageController extends AbstractController
 {
+
+    // View Service data
     #[Route('/', name: 'accueil')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        /* Route & Controller comment */
-        $repository = $doctrine->getRepository(CommentPost::class);
-        $comments = $repository->findBy([],['id' => 'DESC']);
+        $repository = $doctrine->getRepository(Service::class);
+        $services = $repository->findAll();
         return $this->render('home_page/home.html.twig', [
-            "comments" => $comments
+            "services" => $services
         ]);
     }
 }
