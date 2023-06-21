@@ -13,17 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class ServiceController extends AbstractController
 {
 
-    /* Route & Controller to view */
-    #[Route('/service', name: 'service')]
-    public function index(ManagerRegistry $doctrine): Response
-    {
-        $repository = $doctrine->getRepository(Service::class);
-        $services = $repository->findAll();
-        return $this->render('service/service.html.twig', [
-            "services" => $services
-        ]);
-    }
-
     /* Route & Controller to add a service*/
     #[Route('/service/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
