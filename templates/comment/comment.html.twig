@@ -27,11 +27,11 @@
 											Ecrit par
 											{{comment.author}}
 										</p>
-										<a href="{{ path('delete-comment', {'id':comment.id}) }}" class="card-link">Supprimer</a>
+										<a href="{{ path('delete-comment', {'id':comment.id}) }}" class="btn btn-danger">Supprimer</a>
 										{% if comment.approved == 1  %}
 										<a href="{{ path('approve-comment', {'id':comment.id}) }}" class="card-link text-success"> Mis en Ligne </a>
 										{% else %}
-										<a href="{{ path('approve-comment', {'id':comment.id}) }}" class="card-link">Approuver</a>
+										<a href="{{ path('approve-comment', {'id':comment.id}) }}" class="btn btn-warning">Approuver</a>
 										{% endif %}
 									</div>
 								</div>

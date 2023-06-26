@@ -275,7 +275,7 @@
 							{% if app.user  %}
 								{% if app.user.username == 'Parrot' %}
 
-									<a href="{{ path('edit-time', {'id':timetable.id}) }}" class="card-link">Modifier les horraires</a>
+									<a href="{{ path('edit-time', {'id':timetable.id}) }}" class="btn btn-danger">Modifier les horraires</a>
 								{% endif %}
 							{% endif %}
 						</div>

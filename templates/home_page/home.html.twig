@@ -19,8 +19,8 @@
 								{% if app.user %}
 									{% if app.user.username == 'Parrot' %}
 										<div class="card-body">
-											<a href="{{ path('delete-service', {'id':service.id}) }}" class="card-link">Supprimer</a>
-											<a href="{{ path('edit-service', {'id':service.id}) }}" class="card-link">Modifier</a>
+											<a href="{{ path('delete-service', {'id':service.id}) }}" class="btn btn-danger">Supprimer</a>
+											<a href="{{ path('edit-service', {'id':service.id}) }}" class="btn btn-warning">Modifier</a>
 										</div>
 									</div>
 								</div>
@@ -87,10 +87,17 @@
 
 					</div>
 				</div>
-				<a href="/comment/new" class="d-flex justify-content-center">
-					Votre avis nous intéresse !
-				</a>
-			</div>
+				{% if app.user %}
+					<div class=" d-flex justify-content-center mt-3">
+						<a href="/comment" class="btn btn-danger">Gérer les avis</a>
+					</div>
+				{% else %}
+					<a href="/comment/new" class="d-flex justify-content-center">
+						Votre avis nous intéresse !
+					</a>
+				</div>
+
+			{% endif %}
 		</div>
 	</section>
 {% endblock %}
