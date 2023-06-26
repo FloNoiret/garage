@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    /* Create user */
     #[Route('/user/new', name: 'user_new')]
     public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
     {
@@ -31,5 +32,28 @@ class UserController extends AbstractController
         return $this->render('user/form.html.twig', [
             'form' => $form -> createView(),
         ]);
+    }
+
+    /* View users */
+    #[Route('/user', name: 'user')]
+    public function index(ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        $repository = $doctrine->getRepository(User::class);
+        $users = $repository->findAll();
+        return $this->render('user/user.html.twig', [
+            "users" => $users
+        ]);
+    }
+
+    /* Delete users */
+    #[Route('/user/delete/{id<\d+>}', name: 'delete-user')]
+    public function delete(User $user, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
+        return $this->redirectToRoute("user");
     }
 }
