@@ -14,7 +14,7 @@ class ContactController extends AbstractController
 {
     /* view contact demand */
 
-    #[Route('/contact', name: 'contact')]
+    #[Route('/contact/message', name: 'message')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
@@ -27,7 +27,7 @@ class ContactController extends AbstractController
 
 
     /* Write a message*/
-    #[Route('/contact/new')]
+    #[Route('/contact', name: 'contact')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
         $contact = new Contact();
