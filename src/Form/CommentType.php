@@ -48,15 +48,3 @@ class CommentType extends AbstractType
 }
 
 
-class CommentApprovalType extends AbstractType
-{
-    /* Creation of the form*/
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add("approved", ChoiceType::class, ['choices' => [
-                'Approuver ' => '1',
-                'Retirer l\'Approbation' => '0',
-            ], "label" => "Que souhaitez-vous faire ? ", "required" => true]);
-    }
-}

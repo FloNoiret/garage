@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -12,14 +13,16 @@ class AppFixtures extends Fixture
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
     {
+
+        // user Password Hasher 
         $this->passwordHasher = $passwordHasher;
     }
 
     public function load(ObjectManager $manager): void
     {
-        
+
         $parrot = new User($this->passwordHasher);
-        $parrot->setUsername("Parrot")-> setPassword("admin")-> setRoles(array('ROLE_ADMIN'));
+        $parrot->setUsername("Parrot")->setPassword("admin")->setRoles(array('ROLE_ADMIN'));
         $manager->persist($parrot);
 
         $manager->flush();
