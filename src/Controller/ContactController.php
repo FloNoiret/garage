@@ -13,11 +13,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     /* view contact demand */
+
     #[Route('/contact', name: 'contact')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $repository = $doctrine->getRepository(Contact::class);
+        $contacts = $repository->findBy([], ['id' => 'DESC']);
         return $this->render('contact/contact.html.twig', [
-            'controller_name' => 'ContactController',
+            "contacts" => $contacts
         ]);
     }
 
@@ -39,5 +43,16 @@ class ContactController extends AbstractController
         return $this->render('contact/form.html.twig', [
             "contact_form" => $contact_form->createView()
         ]);
+    }
+
+    /* Delete message */
+    #[Route('/contact/delete/{id<\d+>}', name: 'delete-message')]
+    public function delete(Contact $contact, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($contact);
+        $entityManager->flush();
+        return $this->redirectToRoute("contact");
     }
 }
