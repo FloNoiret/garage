@@ -26,7 +26,7 @@ class ServiceController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($service);
             $entityManager->flush();
-            return $this->redirectToRoute("service");
+            return $this->redirectToRoute("accueil");
         }
         return $this->render('service/form.html.twig', [
             "service_form" => $service_form->createView()
