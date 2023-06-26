@@ -27,6 +27,7 @@ class CarPostController extends AbstractController
     #[Route('/vehicules/new', name: 'AddVehicule')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $carpost = new CarPost();
         $form = $this->createForm(CarPostType::class, $carpost);
         $form->handleRequest($request);
