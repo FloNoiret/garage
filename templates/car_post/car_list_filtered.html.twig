@@ -1,0 +1,43 @@
+{# Filtered Car #}
+<ul id="car-list">
+	{% for carpost in carposts %}
+
+		{# Car Post Card #}
+		<div class="card m-5" style="width: 18rem;">
+			<img class="d-block w-100" src={{ asset('/assets/CarImage/')~carpost.image.name}} class="card-img-top" alt="{{carpost.title}}">
+			<div class="card-body">
+				<h5 class="card-title">{{carpost.title}}</h5>
+				<p class="card-text">{{carpost.content}}</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<b>
+						Prix
+					</b>
+					<br>{{carpost.price}}
+					€</li>
+				<li class="list-group-item">
+					<b>
+						Kilométrage
+					</b>
+					<br>
+					{{carpost.kilometer}}
+					km</li>
+				<li class="list-group-item">
+					<b>
+						Mise en circulation
+					</b>
+					<br>{{carpost.year|date('Y-m-d')| slice(0, 4) }}</li>
+				<li class="list-group-item">
+					Une question ?
+				</li>
+			</ul>
+			{% if app.user %}
+				<div class="card-body">
+					<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
+				</div>
+			{% endif %}
+		</div>
+
+	{% endfor %}
+</ul>

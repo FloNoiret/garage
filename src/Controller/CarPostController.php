@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarPostController extends AbstractController
 {
-    /* Route & Controller to view car post */
+    /* View car post */
     #[Route('/vehicules', name: 'vehicules')]
     public function index(ManagerRegistry $doctrine): Response
     {
@@ -23,7 +23,7 @@ class CarPostController extends AbstractController
         ]);
     }
 
-    /* Route & Controller to create car post */
+    /* create car post */
     #[Route('/vehicules/new', name: 'AddVehicule')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -77,4 +77,48 @@ class CarPostController extends AbstractController
         $entityManager->flush();
         return $this->redirectToRoute("vehicules");
     }
+
+     /* Filtered car post */
+     #[Route('/vehicules/filtered', name: 'car_list_filtered')]
+     public function carListFilteredAction(Request $request, ManagerRegistry $doctrine)
+ {
+     $repository = $doctrine->getRepository(CarPost::class);
+     $carposts = $repository->findAll(); //Get Car Data 
+ 
+     $minPrice = $request->request->get('min_price');
+     $maxPrice = $request->request->get('max_price');
+     $minKilometer = $request->request->get('min_kilometer');
+     $maxKilometer = $request->request->get('max_kilometer');
+ 
+     // Filter cars with price
+     if ($minPrice !== null) {
+         $carposts = array_filter($carposts, function ($carpost) use ($minPrice) {
+             return $carpost->getPrice() >= $minPrice;
+         });
+     }
+ 
+     if ($maxPrice !== null) {
+         $carposts = array_filter($carposts, function ($carpost) use ($maxPrice) {
+             return $carpost->getPrice() <= $maxPrice;
+         });
+     }
+ 
+     if ($minKilometer !== null) {
+        $carposts = array_filter($carposts, function ($carpost) use ($minKilometer) {
+            return $carpost->getKilometer() >= $minKilometer;
+        });
+    }
+
+    if ($maxKilometer !== null) {
+        $carposts = array_filter($carposts, function ($carpost) use ($maxKilometer) {
+            return $carpost->getKilometer() <= $maxKilometer;
+        });
+    }
+     // Send the HTML filtered
+     $html = $this->renderView('car_post/car_list_filtered.html.twig', [
+         'carposts' => $carposts,
+     ]);
+ 
+     return new Response($html);
+ }
 }
