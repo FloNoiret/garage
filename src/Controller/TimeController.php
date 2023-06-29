@@ -24,7 +24,7 @@ class TimeController extends AbstractController
         ]);
     }
 
-    /* Route & Controller to get frist data
+    /* Route & Controller to get first data 
     #[Route('/timetable')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -37,7 +37,7 @@ class TimeController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($timetable);
             $entityManager->flush();
-            return $this->redirectToRoute("time");
+            return $this->redirectToRoute("accueil");
         }
         return $this->render('time/form.html.twig', [
             "timetable_form" => $timetable_form->createView()

@@ -17,12 +17,36 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add("fullName", TextType::class, ["label" => "Nom & Prénom", "required" => true])
-            ->add("email", EmailType::class, ["label" => "Email", "required" => true])
-            ->add('number', TelType::class, ["label" => "Téléphone", "required" => true])
-            ->add("subject", TextType::class, ["label" => "Sujet", "required" => true])
-            ->add("message", TextareaType::class, ["label" => "Message", "required" => true]);
-           
+            ->add("fullName", TextType::class, array(
+                'attr' => array(
+                    'placeholder' => 'Nom & Prénom',
+                ),
+                'label' => false, "required" => true
+            ))
+            ->add("email", EmailType::class,  array(
+                'attr' => array(
+                    'placeholder' => 'Email',
+                ),
+                'label' => false, "required" => true
+            ))
+            ->add('number', TelType::class,  array(
+                'attr' => array(
+                    'placeholder' => 'Téléphone',
+                ),
+                'label' => false, "required" => true
+            ))
+            ->add("subject", TextType::class,  array(
+                'attr' => array(
+                    'placeholder' => 'Sujet',
+                ),
+                'label' => false, "required" => true
+            ))
+            ->add("message", TextareaType::class,  array(
+                'attr' => array(
+                    'placeholder' => 'Message',
+                ),
+                'label' => false, "required" => true
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver): void

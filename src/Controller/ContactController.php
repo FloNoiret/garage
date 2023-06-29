@@ -28,7 +28,7 @@ class ContactController extends AbstractController
 
     /* Write a message*/
     #[Route('/contact', name: 'contact')]
-    public function create(Request $request, ManagerRegistry $doctrine): Response
+    public function createDemand(Request $request, ManagerRegistry $doctrine): Response
     {
         $contact = new Contact();
         $contact_form = $this->createForm(ContactType::class, $contact);
