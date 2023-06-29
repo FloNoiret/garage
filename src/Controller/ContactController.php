@@ -28,7 +28,18 @@ class ContactController extends AbstractController
 
     /* Write a message*/
     #[Route('/contact', name: 'contact')]
-    public function createDemand(Request $request, ManagerRegistry $doctrine): Response
+    public function renderDemand(Request $request): Response
+    {
+        $contact_form = $this->createForm(ContactType::class);
+
+        return $this->render('contact/form.html.twig', [
+            'contact_form' => $contact_form->createView(),
+        ]);
+    }
+
+
+    #[Route('/process_contact', name: 'process_contact', methods: ["POST"])]
+    public function processDemand(Request $request, ManagerRegistry $doctrine): Response
     {
         $contact = new Contact();
         $contact_form = $this->createForm(ContactType::class, $contact);
@@ -38,14 +49,15 @@ class ContactController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
-            return $this->redirectToRoute("contact");
+
+        
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('contact/form.html.twig', [
-            "contact_form" => $contact_form->createView()
+            'contact_form' => $contact_form->createView(),
         ]);
     }
-
     /* Delete message */
     #[Route('/contact/delete/{id<\d+>}', name: 'delete-message')]
     public function delete(Contact $contact, ManagerRegistry $doctrine): Response
