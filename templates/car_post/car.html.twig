@@ -85,12 +85,15 @@
 
 					</li>
 				</ul>
+
+				{# Manage Car post #}
 				{% if app.user %}
 					<div class="card-body">
 						<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
 					</div>
 
 				{% else %}
+				{# Contact Info + Form #}
 					<li class="list-group-item">
 						<a data-bs-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseExample">
 							Une question ?
