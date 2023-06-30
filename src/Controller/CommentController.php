@@ -18,7 +18,8 @@ class CommentController extends AbstractController
     #[Route('/comment', name: 'comment')]
     public function index(ManagerRegistry $doctrine): Response
     {
-        /* Route & Controller comment */
+        /* View all comment */
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $repository = $doctrine->getRepository(CommentPost::class);
         $comments = $repository->findBy([],['id' => 'DESC']);
         return $this->render('comment/comment.html.twig', [
@@ -26,6 +27,7 @@ class CommentController extends AbstractController
         ]);
     }
 
+    /* Create comment */
     #[Route('/comment/new')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
     {
@@ -37,13 +39,14 @@ class CommentController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-            return $this->redirectToRoute("comment");
+            return $this->redirectToRoute("thank_you");
         }
         return $this->render('comment/commentform.html.twig', [
             "comment_form" => $comment_form->createView()
         ]);
     }
 
+    /* Delete comment */
     #[Route('/comment/delete/{id<\d+>}', name: 'delete-comment')]
     public function delete(CommentPost $comment, ManagerRegistry $doctrine): Response
     {
@@ -54,6 +57,7 @@ class CommentController extends AbstractController
         return $this->redirectToRoute("comment");
     }
 
+    /* Approve comment */
     #[Route('/comment/approval/{id<\d+>}', name: "approve-comment")]
     public function update(Request $request, CommentPost $comment, ManagerRegistry $doctrine): Response
     {

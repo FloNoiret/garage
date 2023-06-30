@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Merci pour votre message
+{% endblock %}
+
+{% block body %}
+<div class="d-flex align-items-center justify-content-center vh-100">
+	<div class="text-center">
+		<h1 class="display-1 fw-bold">Merci</h1>
+		<p class="fs-3">
+			<span class="text-success">Nous avons bien reçu votre message</span> <br>
+			Nous vous répondrons le plus rapidement possible
+            </p>
+		<a href="{{ path('accueil') }}" class="btn btn-danger">Aller à l'Accueil</a>
+	</div>
+</div>
+
+{% endblock %}

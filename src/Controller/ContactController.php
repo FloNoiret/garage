@@ -27,7 +27,7 @@ class ContactController extends AbstractController
 
 
     /* Write a message*/
-    #[Route('/render_contact', name: 'contact')]
+    #[Route('/contact', name: 'contact')]
     public function renderDemand(Request $request): Response
     {
         $contact_form = $this->createForm(ContactType::class);
@@ -51,7 +51,7 @@ class ContactController extends AbstractController
             $entityManager->flush();
 
         
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('thank_you');
         }
 
         return $this->render('contact/form.html.twig', [
@@ -67,5 +67,14 @@ class ContactController extends AbstractController
         $entityManager->remove($contact);
         $entityManager->flush();
         return $this->redirectToRoute("contact");
+    }
+
+    /* Thank You for your Message*/
+    #[Route('/merci', name: 'thank_you')]
+    public function ThankYou(): Response
+    {
+        return $this->render('contact/thankyoupage.html.twig', [
+            'thankyou' => 'ThankYouController',
+        ]);
     }
 }
