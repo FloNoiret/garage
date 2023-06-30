@@ -66,7 +66,7 @@ class ContactController extends AbstractController
         $entityManager = $doctrine->getManager();
         $entityManager->remove($contact);
         $entityManager->flush();
-        return $this->redirectToRoute("contact");
+        return $this->redirectToRoute("message");
     }
 
     /* Thank You for your Message*/

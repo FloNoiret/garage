@@ -91,17 +91,17 @@ class CarPostController extends AbstractController
     {
         $repository = $doctrine->getRepository(CarPost::class);
         $carposts = $repository->findAll(); //Get Car Data 
-        $minPrice = $request->request->get('min_price');
+       // $minPrice = $request->request->get('min_price');
         $maxPrice = $request->request->get('max_price');
         $minKilometer = $request->request->get('min_kilometer');
         $maxKilometer = $request->request->get('max_kilometer');
 
         // Filter cars with price
-        if ($minPrice !== null) {
-            $carposts = array_filter($carposts, function ($carpost) use ($minPrice) {
-                return $carpost->getPrice() >= $minPrice;
-            });
-        }
+      //  if ($minPrice !== null) {
+         //    $carposts = array_filter($carposts, function ($carpost) use ($minPrice) {
+         //        return $carpost->getPrice() >= $minPrice;
+        //     });
+      //   }
 
         if ($maxPrice !== null) {
             $carposts = array_filter($carposts, function ($carpost) use ($maxPrice) {
@@ -109,11 +109,11 @@ class CarPostController extends AbstractController
             });
         }
 
-        if ($minKilometer !== null) {
-            $carposts = array_filter($carposts, function ($carpost) use ($minKilometer) {
-                return $carpost->getKilometer() >= $minKilometer;
-            });
-        }
+      //   if ($minKilometer !== null) {
+       //      $carposts = array_filter($carposts, function ($carpost) use ($minKilometer) {
+       //          return $carpost->getKilometer() >= $minKilometer;
+      //       });
+     //    }
 
         if ($maxKilometer !== null) {
             $carposts = array_filter($carposts, function ($carpost) use ($maxKilometer) {
