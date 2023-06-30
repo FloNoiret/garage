@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Reponse;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity()]
@@ -32,7 +35,16 @@ class CarPost
     private int $kilometer; 
 
     #[ORM\Column(type: "datetime")]
-    private $year; 
+    private $year;
+
+    #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Reponse::class, cascade:['persist', 'remove'])]
+    private Collection $reponses;
+
+    public function __construct()
+    {
+        $this->reponses = new ArrayCollection();
+    }
+
 
     /* private $user;*/ 
 
@@ -167,4 +179,35 @@ class CarPost
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Reponse>
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): static
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses->add($reponse);
+            $reponse->setCarpost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): static
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getCarpost() === $this) {
+                $reponse->setCarpost(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

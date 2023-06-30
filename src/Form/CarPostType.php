@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\CarPost;
+use App\Entity\Reponse;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -19,14 +21,19 @@ class CarPostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          
+
             ->add("title", TextType::class, ["label" => "Titre", "required" => true])
             ->add("content", TextareaType::class, ["label" => "Contenu", "required" => true])
             ->add("price", NumberType::class, ["label" => "Prix", "required" => true])
             ->add("kilometer", NumberType::class, ["label" => "Kilométrage", "required" => true])
-            ->add("Year", DateType::class, [ 'widget' => 'single_text', "label" => "Date de Mise en Circulation", "required" => true])
-            ->add("image", ImageType::class, ["label" => "Télécharger une image", "required" => true]);
-
+            ->add("Year", DateType::class, ['widget' => 'single_text', "label" => "Date de Mise en Circulation", "required" => true])
+            ->add("image", ImageType::class, ["label" => "Télécharger une image", "required" => true])
+            ->add("reponses", CollectionType::class, [
+                'entry_type' => ReponseType::class,
+                'entry_options' => ['label' => 'Reponse'],
+                'allow_add' => true,
+                'by_reference' => false /*Prevent default reference as NULL to car id when add option*/
+            ]);
     }
 
     /*Link entity with form*/

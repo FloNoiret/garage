@@ -4,6 +4,7 @@ twig:
     globals:
      timetable: '@App\Twig\TimeTableExtension'
      comment: '@App\Twig\CommentExtension'
+     carpost: '@App\Twig\CarPostExtension'
 
 when@test:
     twig:

@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\CarPost;
+use App\Entity\Reponse;
+use App\Entity\ReponseType;
 use App\Form\CarPostType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +31,12 @@ class CarPostController extends AbstractController
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $carpost = new CarPost();
+
+        $reponse1 = new Reponse();
+        $reponse2 = new Reponse();
+        $carpost->addReponse($reponse1);
+        $carpost->addReponse($reponse2);
+
         $form = $this->createForm(CarPostType::class, $carpost);
         $form->handleRequest($request);
 
@@ -83,7 +91,6 @@ class CarPostController extends AbstractController
     {
         $repository = $doctrine->getRepository(CarPost::class);
         $carposts = $repository->findAll(); //Get Car Data 
-
         $minPrice = $request->request->get('min_price');
         $maxPrice = $request->request->get('max_price');
         $minKilometer = $request->request->get('min_kilometer');
