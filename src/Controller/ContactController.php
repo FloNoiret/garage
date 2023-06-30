@@ -27,7 +27,7 @@ class ContactController extends AbstractController
 
 
     /* Write a message*/
-    #[Route('/contact', name: 'contact')]
+    #[Route('/render_contact', name: 'contact')]
     public function renderDemand(Request $request): Response
     {
         $contact_form = $this->createForm(ContactType::class);
