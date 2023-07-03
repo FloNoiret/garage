@@ -25,22 +25,29 @@
 		</ul>
 		<button type="button" id="add-reponse-btn">Ajouter une option</button>
 
-		<p class="mt-4">Caracteristiques</p>
 
 
 		{# Characteristics #}
-		<div id="characteristics-list">
-			{% for characteristic in car_post_form.characteristics %}
-				<div class="row characteristic">
-					<div class="col">
-						{{ form_row(characteristic.libelle) }}
-					</div>
-					<div class="col">
-						{{ form_row(characteristic.info) }}
-					</div>
-				</div>
-			{% endfor %}
-		</div>
+
+		<table id="characteristics-list">
+			<thead>
+				<p class="mt-4">
+					Caracteristiques
+				</p>
+			</thead>
+			
+				<tbody>
+				{% for characteristic in car_post_form.characteristics %}
+					<tr>
+						<td>
+							{{ form_row(characteristic.libelle) }}</td>
+						<td>{{ form_row(characteristic.info) }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			
+		</table>
+
 		<button type="button" id="add-characteristic-btn">Ajouter une caractéristique</button>
 
 		<input class="btn btn-danger m-2 addreponse" type="submit" value="Publier">
