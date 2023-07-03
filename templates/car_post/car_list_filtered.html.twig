@@ -1,6 +1,6 @@
 {# Filtered Car #}
-<section class="d-flex justify-content-around flex-wrap container mt-1">
-	<ul id="car-list">
+<section>
+	<ul id="car-list" class="d-flex justify-content-around flex-wrap mt-1">
 		{% for carpost in carposts %}
 
 			{# Car Post Card #}
@@ -8,7 +8,30 @@
 
 			<div
 				class="card m-5" style="width: 18rem;">
-				<img class="d-block w-100" src={{ asset('/assets/CarImage/')~carpost.image.name}} class="card-img-top" alt="{{carpost.title}}">
+				{# Carrousel TO DO 
+																																																																																																																																																																											<div id="{{carpost.title|slug }}" class="carousel slide" data-bs-interval="false">
+																																																																																																																																																																												<div class="carousel-inner">
+																																																																																																																																																																													<div class="carousel-item active">
+																																																																																																																																																																														<img class="d-block w-100" src={{ asset('/assets/CarImage/')~carpost.image.name}} class="card-img-top" alt="voiture de sport">
+																																																																																																																																																																													</div>
+																																																																																																																																																																													<div class="carousel-item">
+																																																																																																																																																																														<img class="d-block w-100" src="https://images.pexels.com/photos/3593922/pexels-photo-3593922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Second slide">
+																																																																																																																																																																													</div>
+																																																																																																																																																																													<div class="carousel-item">
+																																																																																																																																																																														<img class="d-block w-100" src="https://images.pexels.com/photos/3422964/pexels-photo-3422964.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Third slide">
+																																																																																																																																																																													</div>
+																																																																																																																																																																												</div>
+																																																																																																																																																																												<a class="carousel-control-prev" href="#{{carpost.title|slug  }}" role="button" data-bs-slide="prev">
+																																																																																																																																																																													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+																																																																																																																																																																												</a>
+																																																																																																																																																																												<a class="carousel-control-next" href="#{{carpost.title|slug  }}" role="button" data-bs-slide="next">
+																																																																																																																																																																													<span class="carousel-control-next-icon" aria-hidden="true"></span>
+																																																																																																																																																																												</a> 
+																																																																																																																																																																										</div> #}
+
+
+				<img src={{ asset('/assets/CarImage/')~carpost.image.name}} alt="{{carpost.title}}">
+
 				<div class="card-body">
 					<h5 class="card-title">{{carpost.title}}</h5>
 					<p class="card-text">{{carpost.content}}</p>
@@ -37,12 +60,12 @@
 
 				{# Display Options #}
 				<li class="list-group-item">
-					<a data-bs-toggle="collapse" href="#options" role="button" aria-expanded="false" aria-controls="collapseExample">
+					<a data-bs-toggle="collapse" href="#options-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
 						Voir les Options
 					</a>
 				</li>
 
-				<ul class="collapse text-center list-group" id="options">
+				<ul class="collapse text-center list-group" id="options-{{ carpost.id }}">
 					{% for reponse in carpost.reponses %}
 						<li class="list-group-item">
 							{{ reponse.libelle }}
@@ -52,13 +75,13 @@
 
 				{# Display Characteristics #}
 				<li class="list-group-item">
-					<a data-bs-toggle="collapse" href="#characteristics" role="button" aria-expanded="false" aria-controls="collapseExample">
+					<a data-bs-toggle="collapse" href="#characteristics-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
 						Voir les Caracteristiques
 					</a>
 				</li>
 
 
-				<div class="collapse text-center list-group" id="characteristics">
+				<div class="collapse text-center list-group" id="characteristics-{{ carpost.id }}">
 
 
 					<table class="table table-bordered">
@@ -81,17 +104,18 @@
 				{% if app.user %}
 					<div class="card-body">
 						<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
+						<a href="{{ path('edit-vehicule', {'id':carpost.id}) }}" class="btn btn-warning">Modifier</a>
 					</div>
 
 				{% else %}
 					{# Contact Info + Form #}
 					<li class="list-group-item">
-						<a data-bs-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseExample">
+						<a data-bs-toggle="collapse" href="#contact-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
 							Une question ?
 						</a>
 					</li>
 
-					<ul class="collapse text-center list-group" id="collapseForm">
+					<ul class="collapse text-center list-group" id="contact-{{ carpost.id }}">
 						<li class="list-group-item">Contactez-nous directement au
 							<br>
 							<a href="tel:+33102030405">01 02 03 04 05
