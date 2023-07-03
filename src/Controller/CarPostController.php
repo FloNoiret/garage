@@ -93,6 +93,23 @@ class CarPostController extends AbstractController
         return $this->redirectToRoute("vehicules");
     }
 
+    /*  Modify Carpost*/
+    #[Route('/vehicule/edit/{id<\d+>}', name: "edit-vehicule")]
+    public function update(Request $request, CarPost $carpost, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $form = $this->createForm(CarPostType::class, $carpost);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute("vehicules");
+        }
+        return $this->render('car_post/form.html.twig', [
+            "car_post_form" => $form->createView()
+        ]);
+    }
+
     /* Filtered car post */
     #[Route('/vehicules/filtered', name: 'car_list_filtered')]
     public function carListFilteredAction(Request $request, ManagerRegistry $doctrine)
