@@ -33,6 +33,12 @@ class CarPostType extends AbstractType
                 'entry_options' => ['label' => 'Reponse'],
                 'allow_add' => true,
                 'by_reference' => false /*Prevent default reference as NULL to car id when add option*/
+            ])
+            ->add("characteristics", CollectionType::class, [
+                'entry_type' => CharacteristicType::class,
+                'entry_options' => ['label' => true],
+                'allow_add' => true,
+                'by_reference' => false /*Prevent default reference as NULL to car id when add option*/
             ]);
     }
 

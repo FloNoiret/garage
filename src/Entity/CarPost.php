@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Entity\Reponse;
+use App\Entity\Characteristic;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,9 +41,13 @@ class CarPost
     #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Reponse::class, cascade:['persist', 'remove'])]
     private Collection $reponses;
 
+    #[ORM\OneToMany(mappedBy: 'characteristics', targetEntity: Characteristic::class, cascade:["persist", "remove"])]
+    private Collection $characteristics;
+
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
+        $this->characteristics = new ArrayCollection();
     }
 
 
@@ -204,6 +209,36 @@ class CarPost
             // set the owning side to null (unless already changed)
             if ($reponse->getCarpost() === $this) {
                 $reponse->setCarpost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Characteristic>
+     */
+    public function getCharacteristics(): Collection
+    {
+        return $this->characteristics;
+    }
+
+    public function addCharacteristic(Characteristic $characteristic): static
+    {
+        if (!$this->characteristics->contains($characteristic)) {
+            $this->characteristics->add($characteristic);
+            $characteristic->setCharacteristics($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacteristic(Characteristic $characteristic): static
+    {
+        if ($this->characteristics->removeElement($characteristic)) {
+            // set the owning side to null (unless already changed)
+            if ($characteristic->getCharacteristics() === $this) {
+                $characteristic->setCharacteristics(null);
             }
         }
 

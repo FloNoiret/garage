@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CarPost;
+use App\Entity\Characteristic;
 use App\Entity\Reponse;
 use App\Entity\ReponseType;
 use App\Form\CarPostType;
@@ -34,8 +35,15 @@ class CarPostController extends AbstractController
 
         $reponse1 = new Reponse();
         $reponse2 = new Reponse();
+          
         $carpost->addReponse($reponse1);
         $carpost->addReponse($reponse2);
+
+        $characteristic1 = new Characteristic();
+        $characteristic2 = new Characteristic();
+      
+        $carpost->addCharacteristic($characteristic1);
+        $carpost->addCharacteristic($characteristic2);
 
         $form = $this->createForm(CarPostType::class, $carpost);
         $form->handleRequest($request);
@@ -93,8 +101,9 @@ class CarPostController extends AbstractController
         $carposts = $repository->findAll(); //Get Car Data 
        // $minPrice = $request->request->get('min_price');
         $maxPrice = $request->request->get('max_price');
-        $minKilometer = $request->request->get('min_kilometer');
+      //  $minKilometer = $request->request->get('min_kilometer');
         $maxKilometer = $request->request->get('max_kilometer');
+
 
         // Filter cars with price
       //  if ($minPrice !== null) {
@@ -120,6 +129,7 @@ class CarPostController extends AbstractController
                 return $carpost->getKilometer() <= $maxKilometer;
             });
         }
+
         // Send the HTML filtered
         $html = $this->renderView('car_post/car_list_filtered.html.twig', [
             'carposts' => $carposts,

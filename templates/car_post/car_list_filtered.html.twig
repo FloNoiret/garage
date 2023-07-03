@@ -1,43 +1,99 @@
 {# Filtered Car #}
-<ul id="car-list">
-	{% for carpost in carposts %}
+<section class="d-flex justify-content-around flex-wrap container mt-1">
+	<ul id="car-list">
+		{% for carpost in carposts %}
 
-		{# Car Post Card #}
-		<div class="card m-5" style="width: 18rem;">
-			<img class="d-block w-100" src={{ asset('/assets/CarImage/')~carpost.image.name}} class="card-img-top" alt="{{carpost.title}}">
-			<div class="card-body">
-				<h5 class="card-title">{{carpost.title}}</h5>
-				<p class="card-text">{{carpost.content}}</p>
-			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<b>
-						Prix
-					</b>
-					<br>{{carpost.price}}
-					€</li>
-				<li class="list-group-item">
-					<b>
-						Kilométrage
-					</b>
-					<br>
-					{{carpost.kilometer}}
-					km</li>
-				<li class="list-group-item">
-					<b>
-						Mise en circulation
-					</b>
-					<br>{{carpost.year|date('Y-m-d')| slice(0, 4) }}</li>
-				<li class="list-group-item">
-					Une question ?
-				</li>
-			</ul>
-			{% if app.user %}
+			{# Car Post Card #}
+
+
+			<div
+				class="card m-5" style="width: 18rem;">
+				<img class="d-block w-100" src={{ asset('/assets/CarImage/')~carpost.image.name}} class="card-img-top" alt="{{carpost.title}}">
 				<div class="card-body">
-					<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
+					<h5 class="card-title">{{carpost.title}}</h5>
+					<p class="card-text">{{carpost.content}}</p>
 				</div>
-			{% endif %}
-		</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<b>
+							Prix
+						</b>
+						<br>{{carpost.price}}
+						€</li>
+					<li class="list-group-item">
+						<b>
+							Kilométrage
+						</b>
+						<br>
+						{{carpost.kilometer}}
+						km</li>
+					<li class="list-group-item">
+						<b>
+							Mise en circulation
+						</b>
+						<br>{{carpost.year|date('Y-m-d')| slice(0, 4) }}</li>
+				</li>
 
-	{% endfor %}
-</ul>
+
+				{# Display Options #}
+				<li class="list-group-item">
+					<a data-bs-toggle="collapse" href="#options" role="button" aria-expanded="false" aria-controls="collapseExample">
+						Voir les Options
+					</a>
+				</li>
+
+				<ul class="collapse text-center list-group" id="options">
+					{% for reponse in carpost.reponses %}
+						<li class="list-group-item">
+							{{ reponse.libelle }}
+						</li>
+					{% endfor %}
+				</ul>
+
+				{# Display Characteristics #}
+				<li class="list-group-item">
+					<a data-bs-toggle="collapse" href="#characteristics" role="button" aria-expanded="false" aria-controls="collapseExample">
+						Voir les Caracteristiques
+					</a>
+				</li>
+
+				<ul class="collapse text-center list-group" id="characteristics">
+					{% for characteristic in carpost.characteristics %}
+						<li class="list-group-item">
+							{{ characteristic.libelle }}
+							:
+							{{ characteristic.info }}
+						</li>
+					{% endfor %}
+				</ul>
+
+				{# Manage Car post #}
+				{% if app.user %}
+					<div class="card-body">
+						<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
+					</div>
+
+				{% else %}
+					{# Contact Info + Form #}
+					<li class="list-group-item">
+						<a data-bs-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseExample">
+							Une question ?
+						</a>
+					</li>
+
+					<ul class="collapse text-center list-group" id="collapseForm">
+						<li class="list-group-item">Contactez-nous directement au
+							<br>
+							<a href="tel:+33102030405">01 02 03 04 05
+							</a>
+						</li>
+						<li class="list-group-item">
+							Ou envoyez-nous un message
+							{{ render(controller('App\\Controller\\ContactController::renderDemand')) }}
+						</li>
+					</ul>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</ul>
+</section>
