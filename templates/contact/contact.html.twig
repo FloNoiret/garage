@@ -44,6 +44,14 @@
 						</li>
 						<li class="list-group-item">
 							<a href="{{ path('delete-message', {'id':contact.id}) }}" class="btn btn-danger">Supprimer</a>
+							{% if contact.processed == 1  %}
+								<a href="{{ path('processed-demand', {'id':contact.id}) }}" class="card-link text-success m-2">
+									Traité
+								</a>
+							{% else %}
+								<a href="{{ path('processed-demand', {'id':contact.id}) }}" class="btn btn-warning m-2">Marquer comme traité ?
+								</a>
+							{% endif %}
 						</li>
 					</ul>
 				</div>

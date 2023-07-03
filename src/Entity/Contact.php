@@ -28,6 +28,9 @@ class Contact
     #[ORM\Column(type: "string")]
     private string $number;
 
+    #[ORM\Column(type: "string", length: 60)]
+    private ?string $processed = NULL;
+
 
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $createdAt;
@@ -118,6 +121,26 @@ class Contact
     public function setNumber($number)
     {
         $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of processed
+     */ 
+    public function getProcessed()
+    {
+        return $this->processed;
+    }
+
+    /**
+     * Set the value of processed
+     *
+     * @return  self
+     */ 
+    public function setProcessed($processed)
+    {
+        $this->processed = $processed;
 
         return $this;
     }

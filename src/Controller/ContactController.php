@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Form\ContactProcessedType;
 use App\Form\ContactType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,6 +26,23 @@ class ContactController extends AbstractController
         ]);
     }
 
+    /* Processed Demands*/
+
+    #[Route('/contact/processed/{id<\d+>}', name: "processed-demand")]
+    public function update(Request $request, Contact $contact, ManagerRegistry $doctrine): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $contact_processed_form = $this->createForm(ContactProcessedType::class, $contact);
+        $contact_processed_form->handleRequest($request);
+        if ($contact_processed_form->isSubmitted() && $contact_processed_form->isValid()) {
+            $em = $doctrine->getManager();
+            $em->flush();
+            return $this->redirectToRoute("message");
+        }
+        return $this->render('contact/contactprocessed.html.twig', [
+            "contact_processed_form" => $contact_processed_form->createView()
+        ]);
+    }
 
     /* Write a message*/
     #[Route('/contact', name: 'contact')]
@@ -50,7 +68,7 @@ class ContactController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-        
+
             return $this->redirectToRoute('thank_you');
         }
 
