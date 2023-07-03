@@ -57,15 +57,25 @@
 					</a>
 				</li>
 
-				<ul class="collapse text-center list-group" id="characteristics">
-					{% for characteristic in carpost.characteristics %}
-						<li class="list-group-item">
-							{{ characteristic.libelle }}
-							:
-							{{ characteristic.info }}
-						</li>
-					{% endfor %}
-				</ul>
+
+				<div class="collapse text-center list-group" id="characteristics">
+
+
+					<table class="table table-bordered">
+						{% for characteristic in carpost.characteristics %}
+							<tr>
+
+								<td>
+									{{ characteristic.libelle }}
+								</td>
+								<td>
+									{{ characteristic.info }}
+								</td>
+
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
 
 				{# Manage Car post #}
 				{% if app.user %}
