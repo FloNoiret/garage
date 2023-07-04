@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Entity\Reponse;
+use App\Entity\Picture;
 use App\Entity\Characteristic;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class CarPost
 {
 
-     /* Setting Form Variables */ 
+    /* Setting Form Variables */
 
     #[ORM\Id()]
     #[ORM\GeneratedValue(strategy: "AUTO")]
@@ -23,37 +24,41 @@ class CarPost
     #[ORM\Column(type: "string", length: 60)]
     private ?string $title = NULL;
 
-    #[ORM\Column(type: "text", length: 300)] 
+    #[ORM\Column(type: "text", length: 300)]
     private string $content;
 
-    #[ORM\OneToOne(targetEntity: 'Image', cascade:["persist", "remove"])]
+    #[ORM\OneToOne(targetEntity: 'Image', cascade: ["persist", "remove"])]
     private $image = NULL;
 
-   #[ORM\Column(type: "integer")]
+    #[ORM\OneToMany(mappedBy: 'carPost', targetEntity:Picture::class, cascade: ['persist', 'remove'])]
+    private $pictures;
+    
+    #[ORM\Column(type: "integer")]
     private int $price;
 
-     #[ORM\Column(type: "integer")] 
-    private int $kilometer; 
+    #[ORM\Column(type: "integer")]
+    private int $kilometer;
 
     #[ORM\Column(type: "datetime")]
     private $year;
 
-    #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Reponse::class, cascade:['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Reponse::class, cascade: ['persist', 'remove'])]
     private Collection $reponses;
 
-    #[ORM\OneToMany(mappedBy: 'characteristics', targetEntity: Characteristic::class, cascade:["persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: 'characteristics', targetEntity: Characteristic::class, cascade: ["persist", "remove"])]
     private Collection $characteristics;
 
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
         $this->characteristics = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
 
-    /* private $user;*/ 
+    /* private $user;*/
 
-     /* Setting Function to Get & Set Variables */ 
+    /* Setting Function to Get & Set Variables */
     public function getId(): int
     {
         return $this->id;
@@ -92,7 +97,7 @@ class CarPost
     }
 
 
-    public function getImage():?Image
+    public function getImage(): ?Image
     {
         return $this->image;
     }
@@ -107,11 +112,11 @@ class CarPost
     /**
      * Get the value of user
      
-    * public function getUser()
-   * {
-    *    return $this->user;
-   * }
-*/
+     * public function getUser()
+     * {
+     *    return $this->user;
+     * }
+     */
     /**
      * Set the value of user
      *
@@ -119,15 +124,15 @@ class CarPost
     
 
      *public function setUser($user)
-   * {
-    *    $this->user = $user;
-*
-    *    return $this;
-  *  }
- */
+     * {
+     *    $this->user = $user;
+     *
+     *    return $this;
+     *  }
+     */
     /**
      * Get the value of price
-     */ 
+     */
     public function getPrice()
     {
         return $this->price;
@@ -137,7 +142,7 @@ class CarPost
      * Set the value of price
      *
      * @return  self
-     */ 
+     */
     public function setPrice($price)
     {
         $this->price = $price;
@@ -147,7 +152,7 @@ class CarPost
 
     /**
      * Get the value of kilometer
-     */ 
+     */
     public function getKilometer()
     {
         return $this->kilometer;
@@ -157,7 +162,7 @@ class CarPost
      * Set the value of kilometer
      *
      * @return  self
-     */ 
+     */
     public function setKilometer($kilometer)
     {
         $this->kilometer = $kilometer;
@@ -167,7 +172,7 @@ class CarPost
 
     /**
      * Get the value of year
-     */ 
+     */
     public function getYear()
     {
         return $this->year;
@@ -177,7 +182,7 @@ class CarPost
      * Set the value of year
      *
      * @return  self
-     */ 
+     */
     public function setYear($year)
     {
         $this->year = $year;
@@ -245,4 +250,35 @@ class CarPost
         return $this;
     }
 
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures ?: new ArrayCollection();
+    }
+
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setCarPost($this); // This sets the CarPost on the Picture entity to establish the relationship
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getCarPost() === $this) {
+                $picture->setCarPost(null);
+            }
+        }
+
+        return $this;
+    }
 }

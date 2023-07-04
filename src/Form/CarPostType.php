@@ -27,7 +27,15 @@ class CarPostType extends AbstractType
             ->add("price", NumberType::class, ["label" => "Prix", "required" => true])
             ->add("kilometer", NumberType::class, ["label" => "Kilométrage", "required" => true])
             ->add("Year", DateType::class, ['widget' => 'single_text', "label" => "Date de Mise en Circulation", "required" => true])
-            ->add("image", ImageType::class, ["label" => "Télécharger une image", "required" => true])
+            ->add("image", ImageType::class, ["label" => "Télécharger une image principale", "required" => true])
+            ->add('picture', FileType::class, [
+                'label' => 'Ajouter des images à la galerie',
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false,
+            
+            ])
+
             ->add("reponses", CollectionType::class, [
                 'entry_type' => ReponseType::class,
                 'entry_options' => ['label' => 'Reponse'],
@@ -39,7 +47,7 @@ class CarPostType extends AbstractType
                 'entry_options' => ['label' => true],
                 'allow_add' => true,
                 'by_reference' => false /*Prevent default reference as NULL to car id when add option*/
-            ]);
+            ]);      
     }
 
     /*Link entity with form*/

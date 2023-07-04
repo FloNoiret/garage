@@ -35,6 +35,7 @@ class Image
 
         return $this;
     }
+    
 
     /**
      * Get the value of file

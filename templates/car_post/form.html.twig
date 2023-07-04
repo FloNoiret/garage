@@ -14,6 +14,7 @@
 		{{ form_row(car_post_form.kilometer) }}
 		{{ form_row(car_post_form.Year) }}
 		{{ form_row(car_post_form.image) }}
+		{{ form_row(car_post_form.picture) }}
 
 		{# Options #}
 		<p>Options et Equipements</p>
@@ -26,7 +27,6 @@
 		<button type="button" id="add-reponse-btn">Ajouter une option</button>
 
 
-
 		{# Characteristics #}
 
 		<table id="characteristics-list">
@@ -35,17 +35,17 @@
 					Caracteristiques
 				</p>
 			</thead>
-			
-				<tbody>
+
+			<tbody>
 				{% for characteristic in car_post_form.characteristics %}
 					<tr>
 						<td>
 							{{ form_row(characteristic.libelle) }}</td>
 						<td>{{ form_row(characteristic.info) }}</td>
 					</tr>
-					{% endfor %}
-				</tbody>
-			
+				{% endfor %}
+			</tbody>
+
 		</table>
 
 		<button type="button" id="add-characteristic-btn">Ajouter une caractéristique</button>
