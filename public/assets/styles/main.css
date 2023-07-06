@@ -49,5 +49,9 @@
 
  /* Home Page */
 
- 
+ .card-img-top {
+     height: 200px !important;
+     object-fit: cover !important;
+ }
+
  /* Comment Section */
