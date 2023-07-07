@@ -67,6 +67,10 @@
 
  /* Vehicules Page */
 
+ .car-card {
+    width: 18rem;
+ }
+
  .card-img-top {
      height: 200px !important;
      object-fit: cover !important;
