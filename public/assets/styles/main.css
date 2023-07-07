@@ -49,11 +49,25 @@
 
  /* Home Page */
 
+ .hero-banner {
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     justify-content: center;
+     align-items: center;
+     background-image: url("../upload/CarBannerHyunday.jpg");
+     background-position: 100% 10%;
+     background-size: 100%;
+     width: 100%;
+     height: 50vh;   
+ }
+
+
  /* Comment Section */
 
  /* Vehicules Page */
 
  .card-img-top {
-    height: 200px !important;
-    object-fit: cover !important;
-}
+     height: 200px !important;
+     object-fit: cover !important;
+ }
