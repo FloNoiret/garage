@@ -5,40 +5,47 @@
 {% endblock %}
 
 {% block body %}
-<section class=" d-flex justify-content-center mt-2">
-	<h1>
-		Nos véhicules d'occasion
-	</h1>
-</section>
+	<section class=" d-flex justify-content-center mt-2">
+		<h1>
+			Nos véhicules d'occasion
+		</h1>
+	</section>
 	{% if app.user %}
 		<div class=" d-flex justify-content-center mt-2">
 			<a href="/vehicules/new" class="btn btn-danger mt-3">Ajouter un véhicule</a>
 		</div>
 	{% else %}
 		<section>
-			<div
-				class="d-flex justify-content-around flex-wrap container">
 
-				{# Filters #}
-				<form id="filter-form" class="mt-3">
+			{# Filters #}
+			<form id="filter-form" class="mt-3 container">
+				<div class=" d-inline-flex col-8">
+					<div class="m-2">
+						<label for="max-price">Prix Max. :</label>
+						<input type="range" class="form-range" min="0" max="150000" step="1000" name="max_price" id="max-price" onchange="updateRangeValue(this, 'max-price-value')">
+						<div class="d-flex justify-content-end">
+							<span id="max-price-value"></span>
+							€
+							<br>
+						</div>
 
-					<label for="max-price">Prix Max. :</label>
-					<span id="max-price-value"></span>
-					€
-					<input type="range" class="form-range" min="0" max="150000" step="1000" name="max_price" id="max-price" onchange="updateRangeValue(this, 'max-price-value')">
-					<br>
+					</div>
+					<div class="m-2">
+						<label for="max-kilometer">
+							Kilométrage Max. :</label>
 
-					<label for="max-kilometer">
-						Kilométrage Max. :</label>
-					<span id="max-kilometer-value"></span>
-					km
-					<input type="range" class="form-range" min="0" max="200000" step="10000" name="max_kilometer" id="max-kilometer" onchange="updateRangeValue(this, 'max-kilometer-value')">
+						<input type="range" class="form-range" min="0" max="200000" step="10000" name="max_kilometer" id="max-kilometer" onchange="updateRangeValue(this, 'max-kilometer-value')">
+						<div class="d-flex justify-content-end">
+							<span id="max-kilometer-value"></span>
+							km
+						</div>
+
+					</div>
+					<button type="submit" class="btn btn-danger h-25 m-2 mt-4">Filtrer</button>
+				</div>
+			</form>
 
 
-					<button type="submit" class="btn btn-danger m-2">Filtrer</button>
-				</form>
-
-			</div>
 		{% endif %}
 
 	</section>
@@ -180,7 +187,7 @@
 						{% else %}
 							{# Contact Info + Form #}
 							<li class="list-group-item">
-								<a data-bs-toggle="collapse" href="#contact-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+								<a class="btn btn-purple" data-bs-toggle="collapse" href="#contact-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
 									Une question ?
 								</a>
 							</li>
