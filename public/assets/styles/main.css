@@ -34,9 +34,14 @@
      color: #d92332;
  }
 
+ a:hover{
+    color: #6472f6;
+ }
+
  .btn-purple {
      background-color: #6472f6;
      border: none;
+     color:white;
  }
 
 
