@@ -14,7 +14,7 @@ class HomePageController extends AbstractController
 
     // View Service data
     #[Route('/', name: 'accueil')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function viewService(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Service::class);
         $services = $repository->findAll();

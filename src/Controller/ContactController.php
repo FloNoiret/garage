@@ -16,7 +16,7 @@ class ContactController extends AbstractController
     /* view contact demand */
 
     #[Route('/contact/message', name: 'message')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function viewDemand(ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $repository = $doctrine->getRepository(Contact::class);
@@ -29,7 +29,7 @@ class ContactController extends AbstractController
     /* Processed Demands*/
 
     #[Route('/contact/processed/{id<\d+>}', name: "processed-demand")]
-    public function update(Request $request, Contact $contact, ManagerRegistry $doctrine): Response
+    public function updateMessage(Request $request, Contact $contact, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $contact_processed_form = $this->createForm(ContactProcessedType::class, $contact);
@@ -78,7 +78,7 @@ class ContactController extends AbstractController
     }
     /* Delete message */
     #[Route('/contact/delete/{id<\d+>}', name: 'delete-message')]
-    public function delete(Contact $contact, ManagerRegistry $doctrine): Response
+    public function deleteMessage(Contact $contact, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $entityManager = $doctrine->getManager();

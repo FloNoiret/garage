@@ -19,7 +19,7 @@ class CarPostController extends AbstractController
 {
     /* View car post */
     #[Route('/vehicules', name: 'vehicules')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function viewCar(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(CarPost::class);
         $carposts = $repository->findAll();
@@ -30,7 +30,7 @@ class CarPostController extends AbstractController
 
     /* create car post */
     #[Route('/vehicules/new', name: 'AddVehicule')]
-    public function create(Request $request, ManagerRegistry $doctrine): Response
+    public function createCar(Request $request, ManagerRegistry $doctrine): Response
     {
         $carpost = new CarPost();
 
@@ -129,7 +129,7 @@ class CarPostController extends AbstractController
 
     /* Delete a car post */
     #[Route('/vehicules/delete/{id<\d+>}', name: 'delete-vehicule')]
-    public function delete(CarPost $carpost, ManagerRegistry $doctrine): Response
+    public function deleteCar(CarPost $carpost, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $entityManager = $doctrine->getManager();
@@ -140,7 +140,7 @@ class CarPostController extends AbstractController
 
     /*  Modify Carpost*/
     #[Route('/vehicule/edit/{id<\d+>}', name: "edit-vehicule")]
-    public function update(Request $request, CarPost $carpost, ManagerRegistry $doctrine): Response
+    public function updateCar(Request $request, CarPost $carpost, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $form = $this->createForm(CarPostType::class, $carpost);

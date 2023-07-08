@@ -15,7 +15,7 @@ class UserController extends AbstractController
 {
     /* Create user */
     #[Route('/user/new', name: 'user_new')]
-    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
+    public function newUser(Request $request, UserPasswordHasherInterface $userPasswordHasher, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $user = new User($userPasswordHasher);
@@ -48,7 +48,7 @@ class UserController extends AbstractController
 
     /* Delete users */
     #[Route('/user/delete/{id<\d+>}', name: 'delete-user')]
-    public function delete(User $user, ManagerRegistry $doctrine): Response
+    public function deleteUser(User $user, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $entityManager = $doctrine->getManager();

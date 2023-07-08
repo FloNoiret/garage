@@ -46,7 +46,7 @@ class TimeController extends AbstractController
 
     /*  Modify data*/
     #[Route('/time/edit/{id<\d+>}', name: "edit-time")]
-    public function update(Request $request, TimeTable $timetable, ManagerRegistry $doctrine): Response
+    public function updateTimeTable(Request $request, TimeTable $timetable, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $timetable_form = $this->createForm(TimeTableType::class, $timetable);

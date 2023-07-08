@@ -15,7 +15,7 @@ class ServiceController extends AbstractController
 
     /* Route & Controller to add a service*/
     #[Route('/service/new')]
-    public function create(Request $request, ManagerRegistry $doctrine): Response
+    public function createService(Request $request, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $service = new Service();
@@ -35,7 +35,7 @@ class ServiceController extends AbstractController
 
     /*  Modify data*/
     #[Route('/service/edit/{id<\d+>}', name: "edit-service")]
-    public function update(Request $request, Service $service, ManagerRegistry $doctrine): Response
+    public function updateService(Request $request, Service $service, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $service_form = $this->createForm(ServiceType::class, $service);
@@ -52,7 +52,7 @@ class ServiceController extends AbstractController
 
      /* Delete a service */
      #[Route('/service/delete/{id<\d+>}', name: 'delete-service')]
-     public function delete(Service $service, ManagerRegistry $doctrine): Response
+     public function deleteService(Service $service, ManagerRegistry $doctrine): Response
      {
          $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
          $entityManager = $doctrine->getManager();

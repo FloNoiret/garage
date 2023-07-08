@@ -29,7 +29,7 @@ class CommentController extends AbstractController
 
     /* Create comment */
     #[Route('/comment/new')]
-    public function create(Request $request, ManagerRegistry $doctrine): Response
+    public function createComment(Request $request, ManagerRegistry $doctrine): Response
     {
         $comment = new CommentPost();
         $comment_form = $this->createForm(CommentType::class, $comment);
@@ -48,7 +48,7 @@ class CommentController extends AbstractController
 
     /* Delete comment */
     #[Route('/comment/delete/{id<\d+>}', name: 'delete-comment')]
-    public function delete(CommentPost $comment, ManagerRegistry $doctrine): Response
+    public function deleteComment(CommentPost $comment, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $entityManager = $doctrine->getManager();
@@ -59,7 +59,7 @@ class CommentController extends AbstractController
 
     /* Approve comment */
     #[Route('/comment/approval/{id<\d+>}', name: "approve-comment")]
-    public function update(Request $request, CommentPost $comment, ManagerRegistry $doctrine): Response
+    public function approveComment(Request $request, CommentPost $comment, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $comment_approval_form = $this->createForm(CommentApprovalType::class, $comment);
