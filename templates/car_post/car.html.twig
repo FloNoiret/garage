@@ -166,11 +166,12 @@
 
 						{# Manage Car post #}
 						{% if app.user %}
-							<div class="card-body">
-								<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
-								<a href="{{ path('edit-vehicule', {'id':carpost.id}) }}" class="btn btn-warning">Modifier</a>
-							</div>
-
+							{% if app.user.username == 'Parrot' %}
+								<div class="card-body">
+									<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
+									<a href="{{ path('edit-vehicule', {'id':carpost.id}) }}" class="btn btn-warning">Modifier</a>
+								</div>
+							{% endif %}
 						{% else %}
 							{# Contact Info + Form #}
 							<li class="list-group-item">

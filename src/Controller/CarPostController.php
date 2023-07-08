@@ -32,6 +32,7 @@ class CarPostController extends AbstractController
     #[Route('/vehicules/new', name: 'AddVehicule')]
     public function createCar(Request $request, ManagerRegistry $doctrine): Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $carpost = new CarPost();
 
         $reponse1 = new Reponse();
@@ -131,7 +132,7 @@ class CarPostController extends AbstractController
     #[Route('/vehicules/delete/{id<\d+>}', name: 'delete-vehicule')]
     public function deleteCar(CarPost $carpost, ManagerRegistry $doctrine): Response
     {
-        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $entityManager = $doctrine->getManager();
         $entityManager->remove($carpost);
         $entityManager->flush();
@@ -142,7 +143,7 @@ class CarPostController extends AbstractController
     #[Route('/vehicule/edit/{id<\d+>}', name: "edit-vehicule")]
     public function updateCar(Request $request, CarPost $carpost, ManagerRegistry $doctrine): Response
     {
-        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $form = $this->createForm(CarPostType::class, $carpost);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

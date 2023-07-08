@@ -7,7 +7,7 @@
 
 
 			<div
-				class="card m-5" style="width: 18rem;">
+				class="card m-5 car-card">
 				{# Carrousel Gallery #}
 
 				<div id="{{carpost.title|slug }}" class="carousel slide" data-bs-interval="false">
@@ -41,7 +41,7 @@
 					<div class="modal-dialog modal-dialog-centered modal-lg">
 						<div class="modal-content">
 							<div class="modal-body">
-								<img src="{{ asset('/assets/CarImage/') ~ carpost.image.name }}" alt="{{ carpost.title }}" style="width: 100%;">
+								<img src="{{ asset('/assets/CarImage/') ~ carpost.image.name }}" alt="{{ carpost.title }}" class="modal-img">
 							</div>
 						</div>
 					</div>
@@ -51,7 +51,7 @@
 						<div class="modal-dialog modal-dialog-centered modal-lg">
 							<div class="modal-content">
 								<div class="modal-body">
-									<img src="{{ asset('assets/CarImage/Gallery/' ~ picture.title) }}" alt="Picture" style="height: 80vh;">
+									<img src="{{ asset('assets/CarImage/Gallery/' ~ picture.title) }}" alt="Picture" class="modal-img">
 								</div>
 							</div>
 						</div>
@@ -128,11 +128,12 @@
 
 					{# Manage Car post #}
 					{% if app.user %}
-						<div class="card-body">
-							<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
-							<a href="{{ path('edit-vehicule', {'id':carpost.id}) }}" class="btn btn-warning">Modifier</a>
-						</div>
-
+						{% if app.user.username == 'Parrot' %}
+							<div class="card-body">
+								<a href="{{ path('delete-vehicule', {'id':carpost.id}) }}" class="btn btn-danger">Supprimer</a>
+								<a href="{{ path('edit-vehicule', {'id':carpost.id}) }}" class="btn btn-warning">Modifier</a>
+							</div>
+						{% endif %}
 					{% else %}
 						{# Contact Info + Form #}
 						<li class="list-group-item">
