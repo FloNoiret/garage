@@ -8,37 +8,3 @@
 /var/
 /vendor/
 
-###< Ignore librairies file ###
- 
-/.venv
-/.gradle
-
-###< Ignore sensitive file ###
-*.key
-*.pem
-*.env
-*.config
-###< Ignore user file ###
-*.swp
-*.DS_Store
-/Thumbs.db
-*.log
-src/DataFixtures/
-
-###< Ignore output file ###
-/bin
-/build
-/dist
-/target
-
-###< Ignore generated file ###
-*.class
-*.jar
-*.o
-*.pyc
-*.dll
-
-###< Ignore migrations file ##
-
-
-###< Ignore config file ###
