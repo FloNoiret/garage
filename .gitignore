@@ -8,3 +8,8 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###< Ignore sensitive file ###
+/*.env
+*.log
+/src/DataFixtures/
