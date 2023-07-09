@@ -192,6 +192,9 @@ class CarPostController extends AbstractController
             });
         }
 
+        
+        
+
         // Send the HTML filtered
         $html = $this->renderView('car_post/car_list_filtered.html.twig', [
             'carposts' => $carposts,
@@ -199,5 +202,4 @@ class CarPostController extends AbstractController
 
         return new Response($html);
     }
-
 }

@@ -29,8 +29,8 @@ class CommentPost
     #[ORM\Column(type: "integer")]
     private int $grade;
 
-    #[ORM\Column(type: "string", length: 60)]
-    private ?string $approved = NULL;
+    #[ORM\Column(type: "boolean", length: 60)]
+    private $approved = false;
 
 
     /**

@@ -29,7 +29,7 @@ class ContactController extends AbstractController
     /* Processed Demands*/
 
     #[Route('/contact/processed/{id<\d+>}', name: "processed-demand")]
-    public function updateMessage(Request $request, Contact $contact, ManagerRegistry $doctrine): Response
+    public function updateMessageStatus(Request $request, Contact $contact, ManagerRegistry $doctrine): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $contact_processed_form = $this->createForm(ContactProcessedType::class, $contact);

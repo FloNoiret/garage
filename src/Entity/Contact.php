@@ -28,8 +28,8 @@ class Contact
     #[ORM\Column(type: "string")]
     private string $number;
 
-    #[ORM\Column(type: "string", length: 60)]
-    private ?string $processed = NULL;
+    #[ORM\Column(type: "boolean", length: 60)]
+    private $processed = false;
 
 
     #[ORM\Column(type: 'datetime_immutable')]
