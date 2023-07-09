@@ -82,7 +82,7 @@
 							Mise en circulation
 						</b>
 						<br>
-						{{carpost.year|date('Y-m-d')| slice(0, 4) }}</li>
+						{{carpost.date|date('Y-m-d')| slice(0, 4) }}</li>
 
 					{# Display Options #}
 					<li class="list-group-item">
@@ -92,9 +92,9 @@
 					</li>
 
 					<ul class="collapse text-center list-group" id="options-{{ carpost.id }}">
-						{% for reponse in carpost.reponses %}
+						{% for equipment in carpost.equipments %}
 							<li class="list-group-item">
-								{{ reponse.libelle }}
+								{{ equipment.libelle }}
 							</li>
 						{% endfor %}
 					</ul>

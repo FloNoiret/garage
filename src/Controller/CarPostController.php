@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\CarPost;
 use App\Entity\Characteristic;
-use App\Entity\Reponse;
+use App\Entity\Equipment;
 use App\Entity\Picture;
-use App\Entity\ReponseType;
+use App\Form\EquipmentType;
 use App\Form\CarPostType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -35,11 +35,11 @@ class CarPostController extends AbstractController
         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $carpost = new CarPost();
 
-        $reponse1 = new Reponse();
-        $reponse2 = new Reponse();
+        $equipment1 = new Equipment();
+        $equipment2 = new Equipment();
 
-        $carpost->addReponse($reponse1);
-        $carpost->addReponse($reponse2);
+        $carpost->addEquipment($equipment1);
+        $carpost->addEquipment($equipment2);
 
         $characteristic1 = new Characteristic();
         $characteristic2 = new Characteristic();
@@ -167,7 +167,6 @@ class CarPostController extends AbstractController
         //  $minKilometer = $request->request->get('min_kilometer');
         $maxKilometer = $request->request->get('max_kilometer');
 
-
         // Filter cars with price
         //  if ($minPrice !== null) {
         //    $carposts = array_filter($carposts, function ($carpost) use ($minPrice) {
@@ -200,4 +199,5 @@ class CarPostController extends AbstractController
 
         return new Response($html);
     }
+
 }

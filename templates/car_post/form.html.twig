@@ -12,19 +12,19 @@
 		{{ form_row(car_post_form.content) }}
 		{{ form_row(car_post_form.price) }}
 		{{ form_row(car_post_form.kilometer) }}
-		{{ form_row(car_post_form.Year) }}
+		{{ form_row(car_post_form.date) }}
 		{{ form_row(car_post_form.image) }}
 		{{ form_row(car_post_form.picture) }}
 
 		{# Options #}
 		<p>Options et Equipements</p>
 
-		<ul id="reponses-list" class="reponse">
-			{% for reponse in car_post_form.reponses %}
-				<li>{{ form_row(reponse.libelle) }}</li>
+		<ul id="equipments-list" class="equipment">
+			{% for equipment in car_post_form.equipments %}
+				<li>{{ form_row(equipment.libelle) }}</li>
 			{% endfor %}
 		</ul>
-		<button type="button" id="add-reponse-btn">Ajouter une option</button>
+		<button type="button" id="add-equipment-btn">Ajouter une option</button>
 
 
 		{# Characteristics #}
@@ -52,7 +52,7 @@
 
 		<br>
 
-		<input class="btn btn-danger m-4 addreponse" type="submit" value="Publier">
+		<input class="btn btn-danger m-4 addequipment" type="submit" value="Publier">
 		{{ form_end(car_post_form) }}
 	</div>
 {% endblock %}
@@ -61,15 +61,15 @@
 	<script>
 		// Add option button
 document.addEventListener('DOMContentLoaded', function () {
-var reponsesList = document.getElementById('reponses-list');
-var index = reponsesList.children.length;
+var equipmentsList = document.getElementById('equipments-list');
+var index = equipmentsList.children.length;
 
-document.getElementById('add-reponse-btn').addEventListener('click', function () {
-var prototype = '{{ form_widget(car_post_form.reponses.vars.prototype) }}';
-var newReponse = prototype.replace(/__name__/g, index);
+document.getElementById('add-equipment-btn').addEventListener('click', function () {
+var prototype = '{{ form_widget(car_post_form.equipments.vars.prototype) }}';
+var newEquipment = prototype.replace(/__name__/g, index);
 var li = document.createElement('li');
-li.innerHTML = newReponse;
-reponsesList.appendChild(li);
+li.innerHTML = newEquipment;
+equipmentsList.appendChild(li);
 index++;
 });
 });

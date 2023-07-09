@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\CarPost;
-use App\Entity\Reponse;
+use App\Entity\Equipment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -26,7 +26,7 @@ class CarPostType extends AbstractType
             ->add("content", TextareaType::class, ["label" => "Contenu", "required" => true])
             ->add("price", NumberType::class, ["label" => "Prix", "required" => true])
             ->add("kilometer", NumberType::class, ["label" => "Kilométrage", "required" => true])
-            ->add("Year", DateType::class, ['widget' => 'single_text', "label" => "Date de Mise en Circulation", "required" => true])
+            ->add("date", DateType::class, ['widget' => 'single_text', "label" => "Date de Mise en Circulation", "required" => true])
             ->add("image", ImageType::class, ["label" => "Télécharger une image principale", "required" => true])
             ->add('picture', FileType::class, [
                 'label' => 'Ajouter des images à la galerie',
@@ -36,9 +36,9 @@ class CarPostType extends AbstractType
             
             ])
 
-            ->add("reponses", CollectionType::class, [
-                'entry_type' => ReponseType::class,
-                'entry_options' => ['label' => 'Reponse'],
+            ->add("equipments", CollectionType::class, [
+                'entry_type' => EquipmentType::class,
+                'entry_options' => ['label' => 'Equipment'],
                 'allow_add' => true,
                 'by_reference' => false /*Prevent default reference as NULL to car id when add option*/
             ])

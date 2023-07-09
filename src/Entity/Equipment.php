@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ReponseRepository;
+use App\Repository\EquipmentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ReponseRepository::class)]
-class Reponse
+#[ORM\Entity(repositoryClass: EquipmentRepository::class)]
+class Equipment
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,7 +16,7 @@ class Reponse
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\ManyToOne(inversedBy: 'reponses')]
+    #[ORM\ManyToOne(inversedBy: 'equipments')]
     private ?CarPost $carpost = null;
 
     public function getId(): ?int

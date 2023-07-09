@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use App\Entity\Reponse;
+use App\Entity\Equipment;
 use App\Entity\Picture;
 use App\Entity\Characteristic;
 use Doctrine\Common\Collections\Collection;
@@ -40,17 +40,17 @@ class CarPost
     private int $kilometer;
 
     #[ORM\Column(type: "datetime")]
-    private $year;
+    private $date;
 
-    #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Reponse::class, cascade: ['persist', 'remove'])]
-    private Collection $reponses;
+    #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Equipment::class, cascade: ['persist', 'remove'])]
+    private Collection $equipments;
 
     #[ORM\OneToMany(mappedBy: 'characteristics', targetEntity: Characteristic::class, cascade: ["persist", "remove"])]
     private Collection $characteristics;
 
     public function __construct()
     {
-        $this->reponses = new ArrayCollection();
+        $this->equipments = new ArrayCollection();
         $this->characteristics = new ArrayCollection();
         $this->pictures = new ArrayCollection();
     }
@@ -173,9 +173,9 @@ class CarPost
     /**
      * Get the value of year
      */
-    public function getYear()
+    public function getDate()
     {
-        return $this->year;
+        return $this->date;
     }
 
     /**
@@ -183,37 +183,37 @@ class CarPost
      *
      * @return  self
      */
-    public function setYear($year)
+    public function setDate($date)
     {
-        $this->year = $year;
+        $this->date = $date;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Reponse>
+     * @return Collection<int, Equipment>
      */
-    public function getReponses(): Collection
+    public function getEquipments(): Collection
     {
-        return $this->reponses;
+        return $this->equipments;
     }
 
-    public function addReponse(Reponse $reponse): static
+    public function addEquipment(Equipment $equipment): static
     {
-        if (!$this->reponses->contains($reponse)) {
-            $this->reponses->add($reponse);
-            $reponse->setCarpost($this);
+        if (!$this->equipments->contains($equipment)) {
+            $this->equipments->add($equipment);
+            $equipment->setCarpost($this);
         }
 
         return $this;
     }
 
-    public function removeReponse(Reponse $reponse): static
+    public function removeEquipment(Equipment $equipment): static
     {
-        if ($this->reponses->removeElement($reponse)) {
+        if ($this->equipments->removeElement($equipment)) {
             // set the owning side to null (unless already changed)
-            if ($reponse->getCarpost() === $this) {
-                $reponse->setCarpost(null);
+            if ($equipment->getCarpost() === $this) {
+                $equipment->setCarpost(null);
             }
         }
 

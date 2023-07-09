@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Reponse;
+use App\Entity\Equipment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Reponse>
+ * @extends ServiceEntityRepository<Equipment>
  *
- * @method Reponse|null find($id, $lockMode = null, $lockVersion = null)
- * @method Reponse|null findOneBy(array $criteria, array $orderBy = null)
- * @method Reponse[]    findAll()
- * @method Reponse[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Equipment|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Equipment|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Equipment[]    findAll()
+ * @method Equipment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ReponseRepository extends ServiceEntityRepository
+class EquipmentRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Reponse::class);
+        parent::__construct($registry, Equipment::class);
     }
 
-    public function save(Reponse $entity, bool $flush = false): void
+    public function save(Equipment $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ReponseRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Reponse $entity, bool $flush = false): void
+    public function remove(Equipment $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ReponseRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Reponse[] Returns an array of Reponse objects
+//     * @return Equipment[] Returns an array of Equipment objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ReponseRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Reponse
+//    public function findOneBySomeField($value): ?Equipment
 //    {
 //        return $this->createQueryBuilder('r')
 //            ->andWhere('r.exampleField = :val')
