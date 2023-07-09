@@ -1,0 +1,11 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+     timetable: '@App\Twig\TimeTableExtension'
+     comment: '@App\Twig\CommentExtension'
+     carpost: '@App\Twig\CarPostExtension'
+
+when@test:
+    twig:
+        strict_variables: true
