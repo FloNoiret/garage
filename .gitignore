@@ -37,3 +37,10 @@ src/DataFixtures/
 *.o
 *.pyc
 *.dll
+
+###< Ignore migrations file ###
+migrations/
+
+
+###< Ignore config file ###
+config/
