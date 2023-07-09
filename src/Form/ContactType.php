@@ -67,7 +67,7 @@ class ContactType extends AbstractType
             'csrf_field_name' => '_token',
             // an arbitrary string used to generate the value of the token
             // using a different string for each form improves its security
-            'csrf_token_id'   => 'comment_item',
+            'csrf_token_id'   => 'contact_item',
         ]);
     }
 }
