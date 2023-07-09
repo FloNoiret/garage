@@ -38,9 +38,7 @@ src/DataFixtures/
 *.pyc
 *.dll
 
-###< Ignore migrations file ###
-migrations/
+###< Ignore migrations file ##
 
 
 ###< Ignore config file ###
-config/
