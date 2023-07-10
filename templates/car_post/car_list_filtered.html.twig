@@ -82,7 +82,7 @@
 							Mise en circulation
 						</b>
 						<br>
-						{{carpost.date|date('Y-m-d')| slice(0, 4) }}</li>
+						{{carpost.date}}</li>
 
 					{# Display Options #}
 					<li class="list-group-item">
@@ -137,7 +137,7 @@
 					{% else %}
 						{# Contact Info + Form #}
 						<li class="list-group-item">
-							<a data-bs-toggle="collapse" href="#contact-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+							<a class="btn btn-purple" data-bs-toggle="collapse" href="#contact-{{ carpost.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
 								Une question ?
 							</a>
 						</li>

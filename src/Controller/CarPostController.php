@@ -167,12 +167,20 @@ class CarPostController extends AbstractController
         //  $minKilometer = $request->request->get('min_kilometer');
         $maxKilometer = $request->request->get('max_kilometer');
 
+        $minDate = $request->request->get('min_date');
+
         // Filter cars with price
         //  if ($minPrice !== null) {
         //    $carposts = array_filter($carposts, function ($carpost) use ($minPrice) {
         //        return $carpost->getPrice() >= $minPrice;
         //     });
         //   }
+
+        if ($minDate !== null) {
+            $carposts = array_filter($carposts, function ($carpost) use ($minDate) {
+                return $carpost->getDate() >= $minDate;
+            });
+        }
 
         if ($maxPrice !== null) {
             $carposts = array_filter($carposts, function ($carpost) use ($maxPrice) {

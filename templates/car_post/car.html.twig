@@ -33,13 +33,22 @@
 					<div class="m-2">
 						<label for="max-kilometer">
 							Kilométrage Max. :</label>
-
-						<input type="range" class="form-range" min="0" max="200000" step="10000" name="max_kilometer" id="max-kilometer" onchange="updateRangeValue(this, 'max-kilometer-value')">
+						<input type="range" class="form-range" min="0" max="250000" step="10000" name="max_kilometer" id="max-kilometer" onchange="updateRangeValue(this, 'max-kilometer-value')">
 						<div class="d-flex justify-content-end">
 							<span id="max-kilometer-value"></span>
 							km
 						</div>
 					</div>
+
+					<div class="m-2">
+						<label for="min-date">
+							Année de Mise en Circulation :</label>
+						<input type="range" class="form-range" min="1950" max="2025" step="1" name="min_date" id="min-date" onchange="updateRangeValue(this, 'min-date-value')">
+						<div class="d-flex justify-content-end">
+							<span id="min-date-value"></span>
+						</div>
+					</div>
+
 					<button type="submit" class="btn btn-danger m-2 align-self-center">Filtrer</button>
 				</div>
 			</form>
@@ -241,12 +250,13 @@ maxPriceInput.value = maxPriceInput.max;
 const maxKilometerInput = document.getElementById('max-kilometer');
 maxKilometerInput.value = maxKilometerInput.max;
 
+const minDateInput = document.getElementById('min-date');
+minDateInput.value = minDateInput.min;
 
 // Display the default value
 updateRangeValue(maxPriceInput, 'max-price-value');
-
 updateRangeValue(maxKilometerInput, 'max-kilometer-value');
-
+updateRangeValue(minDateInput, 'min-date-value');
 
 // Display input value in filter
 function updateRangeValue(input, outputId) {
