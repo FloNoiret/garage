@@ -44,6 +44,11 @@
      color: white;
  }
 
+.list-item {
+    text-decoration: none;
+    list-style: none;
+    margin: 4%;
+}
 
  /* Footer */
  .footer-title {

@@ -54,7 +54,7 @@ class ServiceController extends AbstractController
      #[Route('/service/delete/{id<\d+>}', name: 'delete-service')]
      public function deleteService(Service $service, ManagerRegistry $doctrine): Response
      {
-         $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
          $entityManager = $doctrine->getManager();
          $entityManager->remove($service);
          $entityManager->flush();

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue
+{% endblock %}
+
+{% block body %}
+	<section>
+		{% if app.user %}
+			<div class="bg-danger p-5">
+				<h1 class="text-light text-center">
+					Bienvenue
+					{{ app.user.username }}
+					!
+				</h1>
+			</div>
+			 
+            <p class="d-flex justify-content-center m-3"> Que voulez-vous faire ? <p>
+            <div class="d-flex justify-content-center">
+				<ul class="list-group text-center m-3">
+					<li class="list-item">
+						<a href="/vehicules">Gérer les Véhicules</a>
+					</li>
+					<li class="list-item">
+						<a href="/contact/message">Voir les demandes de contact</a>
+					</li class="list-item ">
+					<li class="list-item">
+						<a href="/comment">Gérer les avis clients</a>
+					</li>
+
+					{% if app.user.username == 'Parrot' %}
+						<li class="list-item"><hr></li>
+						<li class="list-item">
+							<a href="/user">Gérer les Employés</a>
+						</li>
+						<li class="list-item">
+							<a href="/time/edit/1">Changer les horraires</a>
+						</li>
+						<li class="list-item">
+							<a href="/#service">Modifier les services du garage</a>
+						</li>
+					{% endif %}
+					<li class="list-item"><hr></li>
+					<li class="list-item">
+						<a class="btn btn-purple" href="/logout">
+							Se Déconnecter
+						</a>
+					</li>
+				</ul>
+			</div>
+		{% endif %}
+	</section>
+{% endblock %}

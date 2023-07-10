@@ -26,7 +26,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    /* Processed Demands*/
+    /* Mark the demand as Processed*/
 
     #[Route('/contact/processed/{id<\d+>}', name: "processed-demand")]
     public function updateMessageStatus(Request $request, Contact $contact, ManagerRegistry $doctrine): Response

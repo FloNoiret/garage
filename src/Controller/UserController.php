@@ -27,7 +27,7 @@ class UserController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-            return $this-> redirectToRoute("accueil");
+            return $this-> redirectToRoute("user");
         }
         return $this->render('user/form.html.twig', [
             'form' => $form -> createView(),
