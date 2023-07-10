@@ -39,7 +39,7 @@ class CarPost
     #[ORM\Column(type: "integer")]
     private int $kilometer;
 
-    #[ORM\Column(type: "datetime")]
+    #[ORM\Column(type: "integer", length: 4)]
     private $date;
 
     #[ORM\OneToMany(mappedBy: 'carpost', targetEntity: Equipment::class, cascade: ['persist', 'remove'])]
