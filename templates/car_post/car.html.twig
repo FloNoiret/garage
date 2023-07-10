@@ -23,30 +23,31 @@
 					<div class="m-2">
 						<label for="max-price">Prix Max. :</label>
 						<input type="range" class="form-range" min="0" max="150000" step="1000" name="max_price" id="max-price" onchange="updateRangeValue(this, 'max-price-value')">
-						<div class="d-flex justify-content-end">
+						<p class="d-flex justify-content-end">
 							<span id="max-price-value"></span>
 							€
 							<br>
-						</div>
-
+						</p>
 					</div>
+
 					<div class="m-2">
 						<label for="max-kilometer">
 							Kilométrage Max. :</label>
 						<input type="range" class="form-range" min="0" max="250000" step="10000" name="max_kilometer" id="max-kilometer" onchange="updateRangeValue(this, 'max-kilometer-value')">
-						<div class="d-flex justify-content-end">
+						<p class="d-flex justify-content-end">
 							<span id="max-kilometer-value"></span>
 							km
-						</div>
+						</p>
 					</div>
 
 					<div class="m-2">
 						<label for="min-date">
 							Année de Mise en Circulation :</label>
 						<input type="range" class="form-range" min="1950" max="2025" step="1" name="min_date" id="min-date" onchange="updateRangeValue(this, 'min-date-value')">
-						<div class="d-flex justify-content-end">
+						<p class="d-flex justify-content-end">
+						Après &nbsp;
 							<span id="min-date-value"></span>
-						</div>
+						</p>
 					</div>
 
 					<button type="submit" class="btn btn-danger m-2 align-self-center">Filtrer</button>
