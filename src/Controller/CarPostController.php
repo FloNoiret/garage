@@ -18,10 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CarPostController extends AbstractController
 {
-    /* View car post */
+    /* View carpost  */
     #[Route('/vehicules', name: 'vehicules')]
     public function viewCar(ManagerRegistry $doctrine): Response
     {
+        
         return $this->render('car_post/car.html.twig', [
             'controller_name' => 'CarpostController',
         ]);

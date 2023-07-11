@@ -209,7 +209,8 @@
 								</li>
 								<li class="list-group-item">
 									Ou envoyez-nous un message
-									{{ render(controller('App\\Controller\\ContactController::renderDemand')) }}
+									<div id="form-{{carpost.title|slug }}">{{ render(controller('App\\Controller\\ContactController::renderDemand')) }}
+								</div>
 								</li>
 							</ul>
 						{% endif %}
