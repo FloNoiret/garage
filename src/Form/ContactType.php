@@ -39,13 +39,10 @@ class ContactType extends AbstractType
                 'label' => false,
                 "required" => true
             ))
-            ->add("subject", TextType::class, array(
-                'attr' => array(
-                    'placeholder' => 'Sujet',
-                ),
-                'label' => false,
-                "required" => true
-            ))
+            
+            ->add("subject", HiddenType::class, [
+                'data' => "Contact"]
+            )
             ->add("message", TextareaType::class, array(
                 'attr' => array(
                     'placeholder' => 'Message',

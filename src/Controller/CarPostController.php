@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\CarPost;
 use App\Entity\Characteristic;
+use App\Entity\Contact;
 use App\Entity\Equipment;
 use App\Entity\Picture;
 use App\Form\EquipmentType;
 use App\Form\CarPostType;
-
+use App\Form\ContactType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,10 +22,8 @@ class CarPostController extends AbstractController
     #[Route('/vehicules', name: 'vehicules')]
     public function viewCar(ManagerRegistry $doctrine): Response
     {
-        $repository = $doctrine->getRepository(CarPost::class);
-        $carposts = $repository->findAll();
         return $this->render('car_post/car.html.twig', [
-            "carposts" => $carposts
+            'controller_name' => 'CarpostController',
         ]);
     }
 
@@ -139,7 +138,7 @@ class CarPostController extends AbstractController
         return $this->redirectToRoute("vehicules");
     }
 
-    /*  Modify Carpost*/
+    /* Modify Carpost*/
     #[Route('/vehicule/edit/{id<\d+>}', name: "edit-vehicule")]
     public function updateCar(Request $request, CarPost $carpost, ManagerRegistry $doctrine): Response
     {
@@ -155,6 +154,8 @@ class CarPostController extends AbstractController
             "car_post_form" => $form->createView()
         ]);
     }
+
+
 
     /* Filtered car post */
     #[Route('/vehicules/filtered', name: 'car_list_filtered')]
@@ -199,8 +200,6 @@ class CarPostController extends AbstractController
                 return $carpost->getKilometer() <= $maxKilometer;
             });
         }
-
-        
         
 
         // Send the HTML filtered

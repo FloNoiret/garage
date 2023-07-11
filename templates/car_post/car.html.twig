@@ -45,7 +45,7 @@
 							Année de Mise en Circulation :</label>
 						<input type="range" class="form-range" min="1950" max="2025" step="1" name="min_date" id="min-date" onchange="updateRangeValue(this, 'min-date-value')">
 						<p class="d-flex justify-content-end">
-						Après &nbsp;
+							Après &nbsp;
 							<span id="min-date-value"></span>
 						</p>
 					</div>
@@ -60,7 +60,7 @@
 	</section>
 	<section>
 		<ul id="car-list" class="d-flex justify-content-around flex-wrap mt-1">
-			{% for carpost in carposts %}
+			{% for carpost in carpost.getCarpost %}
 
 				{# Car Post Card #}
 
@@ -119,7 +119,7 @@
 
 					{# Card Body #}
 					<div class="card-body">
-						<h5 class="card-title">{{carpost.title}}</h5>
+						<h5 id="car-title" class="card-title">{{carpost.title}}</h5>
 						<p class="card-text">{{carpost.content}}</p>
 					</div>
 					<ul class="list-group list-group-flush">

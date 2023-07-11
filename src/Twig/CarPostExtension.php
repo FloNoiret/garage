@@ -25,7 +25,7 @@ class CarPostExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('carpost', [$this, 'getCarPost'])
+            new TwigFunction('carpost', [$this, 'getCarpost'])
         ];
     }
 
