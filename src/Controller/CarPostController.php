@@ -6,7 +6,6 @@ use App\Entity\CarPost;
 use App\Entity\Characteristic;
 use App\Entity\Equipment;
 use App\Entity\Picture;
-use App\Form\EquipmentType;
 use App\Form\CarPostType;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -162,19 +161,11 @@ class CarPostController extends AbstractController
     {
         $repository = $doctrine->getRepository(CarPost::class);
         $carposts = $repository->findAll(); //Get Car Data 
-        // $minPrice = $request->request->get('min_price');
+  
         $maxPrice = $request->request->get('max_price');
-        //  $minKilometer = $request->request->get('min_kilometer');
         $maxKilometer = $request->request->get('max_kilometer');
-
         $minDate = $request->request->get('min_date');
 
-        // Filter cars with price
-        //  if ($minPrice !== null) {
-        //    $carposts = array_filter($carposts, function ($carpost) use ($minPrice) {
-        //        return $carpost->getPrice() >= $minPrice;
-        //     });
-        //   }
 
         if ($minDate !== null) {
             $carposts = array_filter($carposts, function ($carpost) use ($minDate) {
@@ -187,12 +178,6 @@ class CarPostController extends AbstractController
                 return $carpost->getPrice() <= $maxPrice;
             });
         }
-
-        //   if ($minKilometer !== null) {
-        //      $carposts = array_filter($carposts, function ($carpost) use ($minKilometer) {
-        //          return $carpost->getKilometer() >= $minKilometer;
-        //       });
-        //    }
 
         if ($maxKilometer !== null) {
             $carposts = array_filter($carposts, function ($carpost) use ($maxKilometer) {

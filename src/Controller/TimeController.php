@@ -12,18 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TimeController extends AbstractController
 {
-
-    /* Route & Controller to view
-    #[Route('/time', name: 'time')]
-    public function index(ManagerRegistry $doctrine): Response
-    {
-        $repository = $doctrine->getRepository(TimeTable::class);
-        $timetables = $repository->findAll();
-        return $this->render('time/time.html.twig', [
-            "timetables" => $timetables
-        ]);
-    }
-
     /* Route & Controller to get first data 
     #[Route('/timetable')]
     public function create(Request $request, ManagerRegistry $doctrine): Response
