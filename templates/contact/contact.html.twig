@@ -15,32 +15,29 @@
 			{% for contact in contacts %}
 
 				{# Contact Demands Card #}
-				<div class="card m-5" style="width: 18rem;">
+				<article class="card m-5" style="width: 18rem;">
 					<div class="card-body">
 						<h5 class="card-title">{{contact.subject}}</h5>
 						<p class="card-text">{{contact.message}}</p>
 					</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							<b>
+							<legend>
 								Nom du Client
-							</b>
-							<br>{{contact.fullName}}
+							</legend>
+							<p>{{contact.fullName}}</p>
 						</li>
 						<li class="list-group-item">
-							<b>
+							<legend>
 								Repondre par mail
-							</b>
-							<br><a href="mailto:{{contact.email}}">{{contact.email}}</a>
+							</legend>
+							<a href="mailto:{{contact.email}}">{{contact.email}}</a>
 						</li>
 						<li class="list-group-item">
-							<b>
+							<legend>
 								Appeler
-							</b>
-							<br>
-							<a href="tel:+33{{contact.number}}">+33{{contact.number}}
-							</a>
-
+							</legend>
+							<a href="tel:+33{{contact.number}}">+33{{contact.number}}</a>
 						</li>
 						<li class="list-group-item">
 							<a href="{{ path('delete-message', {'id':contact.id}) }}" class="btn btn-danger">Supprimer</a>
@@ -54,7 +51,7 @@
 							{% endif %}
 						</li>
 					</ul>
-				</div>
+				</article>
 			{% endfor %}
 		</div>
 	</section>

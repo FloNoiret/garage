@@ -1,13 +1,23 @@
 {% extends 'base.html.twig' %}
 
+{% block metaSEO %}
+	<meta name="title" content="Laisser un avis au Garage V.Parrot">
+	<meta name="description" content="Votre visite au Garage V.Parrot vous a plu ? Laissez un avis !">
+{% endblock %}
+
+{% block title %}Ecrire un avis
+{% endblock %}
+
 {% block body %}
-	
-	<h1 class="text-center mt-5"> Ecrire un avis </h1>
-	<div class="container mt-5 mb-5">
+<section>
+	<h1 class="text-center mt-5">
+		Ecrire un avis
+	</h1>
+	<form class="container mt-5 mb-5">
 		{{ form_start(comment_form) }}
 		{{ form_rest(comment_form) }}
 		<input type="submit" value="Publier" class="btn btn-danger mt-2">
 		{{ form_end(comment_form) }}
-	</div>
-
+	</form>
+<section>
 {% endblock %}

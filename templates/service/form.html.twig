@@ -1,19 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Modifier les services {% endblock %}
+{% block title %}
+	Modifier les services
+{% endblock %}
 
 {% block body %}
-<div class="container mt-5 mb-5">
-		<h1 class="text-center mt-5"> Ajouter un service </h1>
-		
-		{# Form to add a service #}
+	<section>
+		<div class="container mt-5 mb-5">
+			<h1 class="text-center mt-5">
+				Ajouter un service
+			</h1>
 
-		{{ form_start(service_form) }}
-		{{ form_rest(service_form) }}
-		<input type="submit" value="Ajouter">
-		{{ form_end(service_form) }}
-	</div>
-
+			{# Form to add a service #}
+			<form>
+				{{ form_start(service_form) }}
+				{{ form_rest(service_form) }}
+				<input type="submit" value="Ajouter">
+				{{ form_end(service_form) }}
+			</form>
+		</div>
+	</section>
 {% endblock %}
 
 {# Visualize the service in home_page/home.html.twig #}

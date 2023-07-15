@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
-
+{% block metaSEO %}
+	<meta name="title" content="Garage V.Parrot à Toulouse">
+	<meta name="description" content="Le Garage V.Parrot s'occupe de votre voiture : entretien, réparation, nettoyage et verifications techniques ">
+{% endblock %}
 {% block title %}Garage V.Parrot
 {% endblock %}
 
@@ -9,10 +12,11 @@
 		<div class="bg-danger p-5">
 			<div class="container ">
 				<h2 id="service" class="text-white text-center">
-					Découvrez les Services Incontournables</h2>
+					Découvrez les Services Incontournables
+				</h2>
 				<div>
 					{% for service in services|slice(0,2) %}
-						<div class=" mt-2 mb-2">
+						<article class=" mt-2 mb-2">
 							<div class="card-body">
 								<h3 class="card-title text-dark">{{service.title}}</h3>
 								<p class="card-text">{{service.content}}</p>
@@ -25,7 +29,7 @@
 									{% endif %}
 								{% endif %}
 							</div>
-						</div>
+						</article>
 					{% endfor %}
 				</div>
 			</div>
@@ -34,7 +38,7 @@
 
 	{# Car Banner Section #}
 	<section class="hero-banner">
-		
+
 		<h1 class="m-3 text-light">
 			Visiter le Garage V.Parrot
 		</h1>
@@ -43,7 +47,6 @@
 				Voir les horaires
 			</a>
 		</div>
-
 	</section>
 
 	<section>
@@ -53,7 +56,7 @@
 				Tous les services du garage
 			</h2>
 			{% for service in services|slice(2,3) %}
-				<div class=" mt-2 mb-2">
+				<article class=" mt-2 mb-2">
 					<div class="card-body">
 						<h3 class="card-title">{{service.title}}</h3>
 						<p class="card-text">{{service.content}}</p>
@@ -63,10 +66,10 @@
 									<a href="{{ path('delete-service', {'id':service.id}) }}" class="btn btn-danger">Supprimer</a>
 									<a href="{{ path('edit-service', {'id':service.id}) }}" class="btn btn-warning">Modifier</a>
 								</div>
-							</div>
+							{% endif %}
 						{% endif %}
-					{% endif %}
-				</div>
+					</div>
+				</article>
 			{% endfor %}
 
 			<p class="d-flex justify-content-center">
@@ -77,7 +80,7 @@
 
 			<div class="collapse" id="collapseForm">
 				{% for service in services|slice(5,) %}
-					<div class=" mt-2 mb-2">
+					<article class=" mt-2 mb-2">
 						<div class="card-body">
 							<h3 class="card-title">{{service.title}}</h3>
 							<p class="card-text">{{service.content}}</p>
@@ -87,10 +90,10 @@
 										<a href="{{ path('delete-service', {'id':service.id}) }}" class="btn btn-danger">Supprimer</a>
 										<a href="{{ path('edit-service', {'id':service.id}) }}" class="btn btn-warning">Modifier</a>
 									</div>
-								</div>
+								{% endif %}
 							{% endif %}
-						{% endif %}
-					</div>
+						</div>
+					</article>
 				{% endfor %}
 			</div>
 			{% if app.user %}
@@ -101,7 +104,6 @@
 				{% endif %}
 			{% endif %}
 		</div>
-
 	</section>
 
 	{# Comment Section #}
@@ -119,11 +121,11 @@
 
 						{% for comment in comment.getComment %}
 							{% if comment.approved == 1 %}
-								<div class="col-md-4 mb-3">
+								<article class="col-md-4 mb-3">
 									<div class="card">
 										<div class="card-body">
 											<div class="d-flex justify-content-between">
-												<h5 class="card-title">{{comment.title}}</h5>
+												<h3 class="card-title text-dark">{{comment.title}}</h3>
 												<i class="card-subtitle mb-2 text-danger">{{comment.grade}}/5</i>
 											</div>
 											<p class="card-text mt-2">
@@ -137,10 +139,9 @@
 											</p>
 										</div>
 									</div>
-								</div>
+								</article>
 							{% endif %}
 						{% endfor %}
-
 					</div>
 				</div>
 				{% if app.user %}
@@ -152,7 +153,6 @@
 						Votre avis nous intéresse !
 					</a>
 				</div>
-
 			{% endif %}
 		</div>
 	</section>

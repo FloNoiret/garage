@@ -4,154 +4,154 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container m-5">
+	<section class="container m-5">
 		<h1 class="text-center m-5">
 			Changer les horaires d'ouvertures
 		</h1>
 
 		{# Form #}
-		{{ form_start(timetable_form) }}
-		<div
-			class="container">
-			{# Monday #}
-			<div class="row">
-				<div class="col">
-					Lundi
+		<form>
+			{{ form_start(timetable_form) }}
+			<div
+				class="container">
+				{# Monday #}
+				<div class="row">
+					<div class="col">
+						Lundi
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.mondayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closemondayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.mondayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closemondayPM) }}
+					</div>
 				</div>
-				<div class="col">
-					{{ form_row(timetable_form.mondayAM) }}
+				<hr>
+				{# Tuesday #}
+				<div class="row">
+					<div class="col">
+						Mardi
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.tuesdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closetuesdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.tuesdayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closetuesdayPM) }}
+					</div>
 				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closemondayAM) }}
+				<hr>
+				{# Wednesday #}
+				<div class="row">
+					<div class="col">
+						Mercredi
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.wednesdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closewednesdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.wednesdayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closewednesdayPM) }}
+					</div>
 				</div>
-				<div class="col">
-					{{ form_row(timetable_form.mondayPM) }}
+				<hr>
+				{# Thursday #}
+				<div class="row">
+					<div class="col">
+						Jeudi
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.thursdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closethursdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.thursdayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closethursdayPM) }}
+					</div>
 				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closemondayPM) }}
+				<hr>
+				{# Friday #}
+				<div class="row">
+					<div class="col">
+						Vendredi
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.fridayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closefridayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.fridayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closefridayPM) }}
+					</div>
 				</div>
+				<hr>
+				{# Saturday #}
+				<div class="row">
+					<div class="col">
+						Samedi
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.saturdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closesaturdayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.saturdayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closesaturdayPM) }}
+					</div>
+				</div>
+				<hr>
+				{# Sunday #}
+				<div class="row">
+					<div class="col">
+						Dimanche
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.sundayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closesundayAM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.sundayPM) }}
+					</div>
+					<div class="col">
+						{{ form_row(timetable_form.closesundayPM) }}
+					</div>
+				</div>
+				<hr>
 			</div>
-			<hr>
-			{# Tuesday #}
-			<div class="row">
-				<div class="col">
-					Mardi
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.tuesdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closetuesdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.tuesdayPM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closetuesdayPM) }}
-				</div>
-			</div>
-			<hr>
-			{# Wednesday #}
-			<div class="row">
-				<div class="col">
-					Mercredi
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.wednesdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closewednesdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.wednesdayPM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closewednesdayPM) }}
-				</div>
-			</div>
-			<hr>
-			{# Thursday #}
-			<div class="row">
-				<div class="col">
-					Jeudi
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.thursdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closethursdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.thursdayPM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closethursdayPM) }}
-				</div>
-			</div>
-			<hr>
-			{# Friday #}
-			<div class="row">
-				<div class="col">
-					Vendredi
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.fridayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closefridayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.fridayPM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closefridayPM) }}
-				</div>
-			</div>
-			<hr>
-			{# Saturday #}
-			<div class="row">
-				<div class="col">
-					Samedi
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.saturdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closesaturdayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.saturdayPM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closesaturdayPM) }}
-				</div>
-			</div>
-			<hr>
-			{# Sunday #}
-			<div class="row">
-				<div class="col">
-					Dimanche
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.sundayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closesundayAM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.sundayPM) }}
-				</div>
-				<div class="col">
-					{{ form_row(timetable_form.closesundayPM) }}
-				</div>
-			</div>
-			<hr>
-		</div>
-		<input type="submit" value="Mettre à jour" class="btn btn-danger mt-2">
-		{{ form_end(timetable_form) }}
-
-
-	</div>
+			<input type="submit" value="Mettre à jour" class="btn btn-danger mt-2">
+			{{ form_end(timetable_form) }}
+		</form>
+	</section>
 {% endblock %}
 
 

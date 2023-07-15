@@ -6,7 +6,7 @@
 	</div>
 
 	{# Form to add car #}
-	<div class="container mt-5 mb-5">
+	<form class="container mt-5 mb-5">
 		{{ form_start(car_post_form) }}
 		{{ form_row(car_post_form.title) }}
 		{{ form_row(car_post_form.content) }}
@@ -17,7 +17,7 @@
 		{{ form_row(car_post_form.picture) }}
 
 		{# Options #}
-		<p>Options et Equipements</p>
+		<legend>Options et Equipements</legend>
 
 		<ul id="equipments-list" class="equipment">
 			{% for equipment in car_post_form.equipments %}
@@ -31,9 +31,9 @@
 
 		<table id="characteristics-list">
 			<thead>
-				<p class="mt-4">
+				<legend class="mt-4">
 					Caracteristiques
-				</p>
+				</legend>
 			</thead>
 
 			<tbody>
@@ -54,7 +54,7 @@
 
 		<input class="btn btn-danger m-4 addequipment" type="submit" value="Publier">
 		{{ form_end(car_post_form) }}
-	</div>
+	</form>
 {% endblock %}
 
 {% block javascripts %}

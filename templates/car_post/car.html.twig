@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block metaSEO %}
+	<meta name="title" content="Véhicule d'occasion">
+	<meta name="description" content="Le Garage V.Parrot propose des véhicules d'occasion révisés aux alentours de Toulouse">
+{% endblock %}
+
 {# Change page title #}
 {% block title %}Véhicules d'Occasion
 {% endblock %}
@@ -15,9 +20,9 @@
 			<a href="/vehicules/new" class="btn btn-danger mt-3">Ajouter un véhicule</a>
 		</div>
 	{% else %}
-		<section>
 
-			{# Filters #}
+		{# Filters Section #}
+		<section>
 			<form id="filter-form" class="mt-3 container">
 				<div class="d-flex flex-sm-column flex-lg-row col-lg-8">
 					<div class="m-2">
@@ -45,7 +50,7 @@
 							Année de Mise en Circulation :</label>
 						<input type="range" class="form-range" min="1950" max="2025" step="1" name="min_date" id="min-date" onchange="updateRangeValue(this, 'min-date-value')">
 						<p class="d-flex justify-content-end">
-						Après &nbsp;
+							Après &nbsp;
 							<span id="min-date-value"></span>
 						</p>
 					</div>
@@ -53,22 +58,20 @@
 					<button type="submit" class="btn btn-danger m-2 align-self-center">Filtrer</button>
 				</div>
 			</form>
-
-
 		{% endif %}
-
 	</section>
+
+	{# Car Section #}
+
 	<section>
 		<ul id="car-list" class="d-flex justify-content-around flex-wrap mt-1">
 			{% for carpost in carposts %}
 
 				{# Car Post Card #}
-
-
-				<div
+				<article
 					class="card m-5 car-card">
-					{# Carrousel Gallery #}
 
+					{# Carrousel Gallery #}
 					<div id="{{carpost.title|slug }}" class="carousel slide" data-bs-interval="false">
 						<div class="carousel-inner">
 
@@ -82,7 +85,7 @@
 							{% for picture in carpost.pictures %}
 								<div class="carousel-item">
 									<a href="#" data-bs-toggle="modal" data-bs-target="#imageModal{{ carpost.id }}-{{ loop.index }}">
-										<img class="card-img-top" src="{{ asset('assets/CarImage/Gallery/' ~ picture.title) }}" alt="Picture">
+										<img class="card-img-top" src="{{ asset('assets/CarImage/Gallery/' ~ picture.title) }}" alt="Photo de {{ carpost.title }}">
 									</a>
 								</div>
 							{% endfor %}
@@ -110,7 +113,7 @@
 							<div class="modal-dialog modal-dialog-centered modal-lg">
 								<div class="modal-content">
 									<div class="modal-body">
-										<img src="{{ asset('assets/CarImage/Gallery/' ~ picture.title) }}" alt="Picture" class="modal-img">
+										<img src="{{ asset('assets/CarImage/Gallery/' ~ picture.title) }}" alt=" Photo de {{ carpost.title }}" class="modal-img">
 									</div>
 								</div>
 							</div>
@@ -119,29 +122,36 @@
 
 					{# Card Body #}
 					<div class="card-body">
-						<h5 class="card-title">{{carpost.title}}</h5>
+						<h2 class="card-title">{{carpost.title}}</h2>
 						<p class="card-text">{{carpost.content}}</p>
 					</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							<b>
+							<legend>
 								Prix
-							</b>
-							<br>{{carpost.price}}
-							€</li>
+							</legend>
+							<p>
+								{{carpost.price}}
+								€
+							</p>
+						</li>
 						<li class="list-group-item">
-							<b>
+							<legend>
 								Kilométrage
-							</b>
-							<br>
-							{{carpost.kilometer}}
-							km</li>
+							</legend>
+							<p>
+								{{carpost.kilometer}}
+								km
+							</p>
+						</li>
 						<li class="list-group-item">
-							<b>
+							<legend>
 								Mise en circulation
-							</b>
-							<br>
-							{{carpost.date}}</li>
+							</legend>
+							<p>
+								{{carpost.date}}
+							</p>
+						</li>
 
 						{# Display Options #}
 						<li class="list-group-item">
@@ -167,8 +177,6 @@
 
 
 						<div class="collapse text-center list-group" id="characteristics-{{ carpost.id }}">
-
-
 							<table class="table table-bordered">
 								{% for characteristic in carpost.characteristics %}
 									<tr>
@@ -214,14 +222,15 @@
 							</ul>
 						{% endif %}
 					</div>
-				{% endfor %}
-			</ul>
-		</section>
+				</article>
+			{% endfor %}
+		</ul>
+	</section>
 
 
-		{# Filters JS Script - TO MOVE #}
-		<script>
-			// Submission of the filter form to get associated data
+	{# Filters JS Script - TO MOVE #}
+	<script>
+		// Submission of the filter form to get associated data
 
 document.addEventListener('DOMContentLoaded', function () {
 const form = document.getElementById('filter-form');
@@ -264,5 +273,5 @@ function updateRangeValue(input, outputId) {
 document.getElementById(outputId).textContent = input.value;
 }
 
-		</script>
-	{% endblock %}
+	</script>
+{% endblock %}
