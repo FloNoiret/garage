@@ -90,7 +90,7 @@
 													<a class="dropdown-item" href="/user">Gérer les Employés</a>
 												</li>
 												<li>
-													<a class="dropdown-item" href="/time/edit/1">Changer les horraires</a>
+													<a class="dropdown-item" href="/time/edit/1">Changer les horaires</a>
 												</li>
 												<li>
 													<a class="dropdown-item" href="/#service">Modifier les services du garage</a>
@@ -132,14 +132,14 @@
 					<a href="tel:+33102030405">Tel: 01 02 03 04 05
 					</a>
 				</address>
-				{# Horraire d'Ouverture #}
+				{# Horaire d'Ouverture #}
 				<div id="timetable" class="p-2 m-6">
 					{% for timetable in timetable.getTime %}
 						<div id="table">
 							<table>
 								<thead>
 									<p class="footer-title">
-										Horraires d'ouverture
+										Horaires d'ouverture
 									</p>
 
 								</thead>
@@ -272,7 +272,7 @@
 							{% if app.user  %}
 								{% if app.user.username == 'Parrot' %}
 
-									<a href="{{ path('edit-time', {'id':timetable.id}) }}" class="btn btn-danger">Modifier les horraires</a>
+									<a href="{{ path('edit-time', {'id':timetable.id}) }}" class="btn btn-danger">Modifier les horaires</a>
 								{% endif %}
 							{% endif %}
 						</div>

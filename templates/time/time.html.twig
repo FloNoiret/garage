@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	Changer les horraires
+	Changer les horaires
 {% endblock %}
 
 {% block body %}
@@ -12,7 +12,7 @@
 				<table>
 					<thead>
 						<p class="footer-title">
-							Horraires d'ouverture
+							Horaires d'ouverture
 						</p>
 
 					</thead>
@@ -138,7 +138,7 @@
 				</table>
 			</div>
 			<div class="mt-3">
-				<a href="{{ path('edit-time', {'id':timetable.id}) }}" class="card-link">Modifier les horraires</a>
+				<a href="{{ path('edit-time', {'id':timetable.id}) }}" class="card-link">Modifier les horaires</a>
 			</div>
 		{% endfor %}
 	</div>
