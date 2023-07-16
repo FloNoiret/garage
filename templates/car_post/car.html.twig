@@ -55,7 +55,7 @@
 						</p>
 					</div>
 
-					<button type="submit" class="btn btn-danger m-2 align-self-center">Filtrer</button>
+					<button type="submit" id="filterbtn" class="btn btn-danger m-2 align-self-center">Filtrer</button>
 				</div>
 			</form>
 		{% endif %}
@@ -122,7 +122,7 @@
 
 					{# Card Body #}
 					<div class="card-body">
-						<h2 class="card-title">{{carpost.title}}</h2>
+						<h2 id="car-title" class="card-title">{{carpost.title}}</h2>
 						<p class="card-text">{{carpost.content}}</p>
 					</div>
 					<ul class="list-group list-group-flush">

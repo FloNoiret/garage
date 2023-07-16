@@ -59,8 +59,15 @@
      margin-bottom: 0rem;
  }
 
+  /* adjust legend font size for large screen */
+ @media screen and (min-width: 1200px) {
+     legend {
+         font-size: 1rem;
+     }
+ }
+
  p {
-    margin-bottom: 0px;
+     margin-bottom: 0px;
  }
 
  /* Footer */
