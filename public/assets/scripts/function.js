@@ -1,69 +1,46 @@
-// Get Data from Car to Contact Form
-document.addEventListener('DOMContentLoaded', function CarTitle() {
-  //Add dynamic id to car titles
-  //Get the Titles
-  var carTitles = document.querySelectorAll('h2');
+if (document.URL.indexOf("/vehicules") >= 0) {
 
-  // Looping over Title
-  for (var i = 0; i < carTitles.length; i++) {
+  // Get Data from Car to Contact Form
+  document.addEventListener('DOMContentLoaded', function CarTitle() {
 
-    // Get the ith Title
-    var carTitle = carTitles[i];
-
-    // Set the id dynamically
-    carTitle.setAttribute("id", "car-title" + i);
-  }
-
-  // Add dynamic id to subject input
-  var carContacts = document.querySelectorAll('input[id="contact_subject"]');
-  // Looping over Title
-  for (var i = 0; i < carTitles.length; i++) {
-
-    // Get the ith Title
-    var carContact = carContacts[i];
-
-    // Set the id dynamically
-    carContact.setAttribute("id", "car-subject" + i);
-    carContact.setAttribute("type", "hidden");
-    carContact.value = carTitles[i].innerHTML;
-  }
-
-
-  // Adjust Car Subject Form after Filter
-  let filterbtn = document.getElementById("filterbtn")
-
-  document.addEventListener('click', function CarTitleNew() {
-    //Add dynamic id to car titles
     //Get the Titles
-    var carTitlesNew = document.querySelectorAll('h2');
-  
-    // Looping over Title
-    for (var j = 0; j < carTitlesNew.length; j++) {
-  
-      // Get the ith Title
-      var carTitleNew = carTitlesNew[j];
-  
-      // Set the id dynamically
-      carTitleNew.setAttribute("id", "car-title" + j);
-    }
-  
+    var carTitles = document.querySelectorAll('h2');
+
     // Add dynamic id to subject input
-    var carContactsNew = document.querySelectorAll('input[name="contact[subject]"]');
+    var carContacts = document.querySelectorAll('input[id="contact_subject"]');
+
     // Looping over Title
-    for (var j = 0; j < carTitlesNew.length; j++) {
-  
+    for (var i = 0; i < carTitles.length; i++) {
+
       // Get the ith Title
-      var carContactNew = carContactsNew[j];
-  
+      var carContact = carContacts[i];
+
       // Set the id dynamically
-      carContactNew.setAttribute("id", "car-subject" + j);
-      carContactNew.setAttribute("type", "hidden");
-      carContactNew.value = carTitlesNew[j].innerHTML;
+      carContact.setAttribute("id", "car-subject" + i);
+      carContact.setAttribute("type", "hidden");
+      carContact.value = carTitles[i].innerHTML;
     }
+
+    document.addEventListener('click', function CarTitleNew() {
+      //Get the Titles
+      var carTitlesNew = document.querySelectorAll('h2');
+
+      // Add dynamic id to subject input
+      var carContactsNew = document.querySelectorAll('input[name="contact[subject]"]');
+      // Looping over Title
+      for (var j = 0; j < carTitlesNew.length; j++) {
+
+        // Get the ith Title
+        var carContactNew = carContactsNew[j];
+
+        // Set the id dynamically
+        carContactNew.setAttribute("id", "car-subject" + j);
+        carContactNew.setAttribute("type", "hidden");
+        carContactNew.value = carTitlesNew[j].innerHTML;
+      }
+    })
   })
   
-})
-
-
+}
 
 
