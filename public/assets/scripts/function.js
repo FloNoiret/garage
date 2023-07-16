@@ -27,6 +27,9 @@ document.addEventListener('DOMContentLoaded', function CarTitle() {
     carContact.setAttribute("type", "hidden");
     carContact.value = carTitles[i].innerHTML;
   }
+
+
+  // Adjust Car Subject Form after Filter
   let filterbtn = document.getElementById("filterbtn")
 
   document.addEventListener('click', function CarTitleNew() {
