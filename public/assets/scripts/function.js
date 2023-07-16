@@ -3,44 +3,34 @@ if (document.URL.indexOf("/vehicules") >= 0) {
   // Get Data from Car to Contact Form
   document.addEventListener('DOMContentLoaded', function CarTitle() {
 
-    //Get the Titles
-    var carTitles = document.querySelectorAll('h2');
+    var carTitles = document.querySelectorAll('h2'); //Get the Titles
 
-    // Add dynamic id to subject input
-    var carContacts = document.querySelectorAll('input[id="contact_subject"]');
+    var carContacts = document.querySelectorAll('input[name="contact[subject]"]'); // Get the Subject Input
 
-    // Looping over Title
-    for (var i = 0; i < carTitles.length; i++) {
+    for (var i = 0; i < carTitles.length; i++) { // Looping over Titles
 
-      // Get the ith Title
-      var carContact = carContacts[i];
+      var carContact = carContacts[i]; // Get the ith Title
 
-      // Set the id dynamically
-      carContact.setAttribute("id", "car-subject" + i);
-      carContact.setAttribute("type", "hidden");
+      carContact.setAttribute("type", "hidden"); // Set the attribute and value
       carContact.value = carTitles[i].innerHTML;
     }
 
+    // Adjust the subject form value to filtered cars
     document.addEventListener('click', function CarTitleNew() {
-      //Get the Titles
-      var carTitlesNew = document.querySelectorAll('h2');
 
-      // Add dynamic id to subject input
-      var carContactsNew = document.querySelectorAll('input[name="contact[subject]"]');
-      // Looping over Title
-      for (var j = 0; j < carTitlesNew.length; j++) {
+      var carTitlesNew = document.querySelectorAll('h2');  //Get the Titles
 
-        // Get the ith Title
-        var carContactNew = carContactsNew[j];
+      var carContactsNew = document.querySelectorAll('input[name="contact[subject]"]'); // Get the Subject Form Input
 
-        // Set the id dynamically
-        carContactNew.setAttribute("id", "car-subject" + j);
-        carContactNew.setAttribute("type", "hidden");
+      for (var j = 0; j < carTitlesNew.length; j++) { // Looping over Title
+
+        var carContactNew = carContactsNew[j]; // Get the ith Title
+
+        carContactNew.setAttribute("type", "hidden"); // Set the attribute and value
         carContactNew.value = carTitlesNew[j].innerHTML;
       }
     })
   })
-  
 }
 
 
