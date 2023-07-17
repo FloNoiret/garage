@@ -25,14 +25,12 @@
 ###< Ignore sensitive file ###
 *.key
 *.pem
-*.env
 *.config
 ###< Ignore user file ###
 *.swp
 *.DS_Store
 /Thumbs.db
 *.log
-src/DataFixtures/
 
 ###< Ignore output file ###
 /bin
@@ -46,10 +44,3 @@ src/DataFixtures/
 *.o
 *.pyc
 *.dll
-
-###< Ignore migrations file ###
-migrations/
-
-
-###< Ignore config file ###
-config/
