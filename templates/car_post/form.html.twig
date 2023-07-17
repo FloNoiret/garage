@@ -6,7 +6,7 @@
 	</div>
 
 	{# Form to add car #}
-	<form class="container mt-5 mb-5">
+	<div class="container mt-5 mb-5">
 		{{ form_start(car_post_form) }}
 		{{ form_row(car_post_form.title) }}
 		{{ form_row(car_post_form.content) }}
@@ -54,7 +54,7 @@
 
 		<input class="btn btn-danger m-4 addequipment" type="submit" value="Publier">
 		{{ form_end(car_post_form) }}
-	</form>
+	</div>
 {% endblock %}
 
 {% block javascripts %}
