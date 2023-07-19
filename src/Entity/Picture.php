@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use App\Entity\CarPost;
-use App\Repository\PictureRepository;
+use App\Repository\PicturesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PictureRepository::class)]
+#[ORM\Entity(repositoryClass: PicturesRepository::class)]
 class Picture
 {
     #[ORM\Id]
