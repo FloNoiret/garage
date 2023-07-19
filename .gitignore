@@ -33,7 +33,6 @@
 *.log
 
 ###< Ignore output file ###
-/bin
 /build
 /dist
 /target
