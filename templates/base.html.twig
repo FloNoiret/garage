@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Garage V.Parrot
+			{% block title %} Garage V.Parrot
 			{% endblock %}
 		</title>
-		<link rel="stylesheet" href="{{ asset('/assets/styles/main.css') }}"/>
+		{% block metaSEO %}{% endblock %}
 		<link rel="icon" href="/assets/upload/logo_Garage_V.Parrot.png"/>
 		{% block stylesheets %}
 			{# Police #}
