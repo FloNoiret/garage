@@ -3,10 +3,8 @@
 namespace App\Form;
 
 use App\Entity\CarPost;
-use App\Entity\Equipment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -33,7 +31,7 @@ class CarPostType extends AbstractType
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
-            
+
             ])
 
             ->add("equipments", CollectionType::class, [

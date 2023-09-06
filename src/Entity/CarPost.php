@@ -22,13 +22,13 @@ class CarPost
     private int $id;
 
     #[ORM\Column(type: "string", length: 60)]
-    private ?string $title = NULL;
+    private ?string $title;
 
     #[ORM\Column(type: "text", length: 300)]
     private string $content;
 
     #[ORM\OneToOne(targetEntity: 'Image', cascade: ["persist", "remove"])]
-    private $image = NULL;
+    private $image;
 
     #[ORM\OneToMany(mappedBy: 'carPost', targetEntity:Picture::class, cascade: ['persist', 'remove'])]
     private $pictures;
