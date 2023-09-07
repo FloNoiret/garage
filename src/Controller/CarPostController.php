@@ -28,29 +28,27 @@ class CarPostController extends AbstractController
     }
 
     /* create car post */
-    #[Route('/vehicules/new', name: 'AddVehicule')] // Définition du chemain d'accès URL au formulaire. 
+    #[Route('/vehicules/new', name: 'AddVehicule')]
     public function createCar(Request $request, ManagerRegistry $doctrine): Response
     {
-        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY"); // Restrict page to only authentificated users
-        $carpost = new CarPost(); // Create new car in database
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+        $carpost = new CarPost();
 
-        $equipment1 = new Equipment(); // Create new equipment in database
+        $equipment1 = new Equipment();
         $equipment2 = new Equipment();
 
-        $carpost->addEquipment($equipment1); // Link new equipment to associated carpost in its database
+        $carpost->addEquipment($equipment1);
         $carpost->addEquipment($equipment2);
 
-        $characteristic1 = new Characteristic();   // Create new characteristics in database
+        $characteristic1 = new Characteristic();
         $characteristic2 = new Characteristic();
 
-        $carpost->addCharacteristic($characteristic1); // Link new characteristics to associated carpost in its database
+        $carpost->addCharacteristic($characteristic1);
         $carpost->addCharacteristic($characteristic2);
 
-        $form = $this->createForm(CarPostType::class, $carpost); // link the form to entity
-        $form->handleRequest($request);  
+        $form = $this->createForm(CarPostType::class, $carpost);
+        $form->handleRequest($request);
 
-
-        // Operations after submission and validation
         if ($form->isSubmitted() && $form->isValid()) {
             /* Image Principale */
             $path = $this->getParameter('kernel.project_dir') . '/public/assets/CarImage';
@@ -119,14 +117,14 @@ class CarPostController extends AbstractController
             // Flush the Picture entities to save them in the database
             $entityManager->persist($carpost);
             // Persist and flush the Picture entities
-            $entityManager->persist($newPicture); // Insert a new register to the database 
-            $entityManager->flush(); // Attach the object to the entity manager.
-            return $this->redirectToRoute('vehicules'); // Redirect the user to this page
+            $entityManager->persist($newPicture);
+            $entityManager->flush();
+            return $this->redirectToRoute('vehicules');
         }
 
         return $this->render('car_post/form.html.twig', [
             "car_post_form" => $form->createView()
-        ]); // Create form view
+        ]);
     }
 
     /* Delete a car post */
