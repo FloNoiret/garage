@@ -12,4 +12,6 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['all' => true, 'test' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
+    Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
+    Knp\Bundle\GaufretteBundle\KnpGaufretteBundle::class => ['all' => true],
 ];
