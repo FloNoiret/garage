@@ -33,7 +33,7 @@ class CarPostType extends AbstractType
             ->add("content", TextareaType::class, [
                 "label" => "Contenu", "required" => true,
                 "constraints" => [
-                    new Length(["min" => 1, "max" => 300, "minMessage" => "La description ne peux pas être inférieur à 1 caratères", "maxMessage" => "La description ne peux pas être supérieur à 300 caratères"]),
+                    new Length(["min" => 1,"minMessage" => "La description ne peux pas être inférieur à 1 caratères"]),
                     new NotBlank(["message" => "La description ne peut pas être vide"])
                 ]
             ])
