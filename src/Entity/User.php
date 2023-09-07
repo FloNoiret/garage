@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le mot de passe ne doit pas être vide")]
-    #[Assert\Length(min: 6, max: 20, minMessage: "Le mot de passe doit avoir au moins 6 caractère", maxMessage: "Le mot de passe ne doit pas faire plus de 20 caractères")]
+    #[Assert\Length(min: 6, minMessage: "Le mot de passe doit avoir au moins 6 caractère")]
     private ?string $password = null;
 
     #[Assert\NotBlank(message: "La confirmation du mot de passe ne doit pas être vide")]
