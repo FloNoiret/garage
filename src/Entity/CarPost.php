@@ -32,7 +32,7 @@ class CarPost
 
     #[ORM\Column(type: "text", length: 300)]
     #[Assert\NotBlank(message: "La description ne doit pas être vide")]
-    #[Assert\Length(min: 1, max: 300, minMessage: "La description doit avoir au moins 1 caractère", maxMessage: "La description ne doit pas faire plus de 300 caractères")]
+    #[Assert\Length(min: 1, minMessage: "La description doit avoir au moins 1 caractère")]
 
     private string $content;
 
