@@ -7,6 +7,7 @@ use App\Entity\Equipment;
 use App\Entity\Picture;
 use App\Entity\Characteristic;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity()]
@@ -21,10 +22,18 @@ class CarPost
     #[ORM\Column(type: "integer")]
     private int $id;
 
+   
     #[ORM\Column(type: "string", length: 60)]
+    /*Validation avec Form Constraints "Assert"*/
+    #[Assert\NotBlank(message: "Le titre ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 60, minMessage: "Le titre doit avoir au moins 1 caractères", maxMessage: "Le titre ne doit pas faire plus de 60 caractères")]
+
     private ?string $title = NULL;
 
     #[ORM\Column(type: "text", length: 300)]
+    #[Assert\NotBlank(message: "La description ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 300, minMessage: "La description doit avoir au moins 1 caractère", maxMessage: "La description ne doit pas faire plus de 300 caractères")]
+
     private string $content;
 
     #[ORM\OneToOne(targetEntity: 'Image', cascade: ["persist", "remove"])]

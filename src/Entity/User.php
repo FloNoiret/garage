@@ -8,6 +8,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity('username', message:"Le nom d'utilisateur est déjà pris")] 
@@ -19,17 +20,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message: "L'identifiant ne doit pas être vide")]
     private ?string $username = null;
 
     #[ORM\Column]
+    
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le mot de passe ne doit pas être vide")]
+    #[Assert\Length(min: 6, max: 20, minMessage: "Le mot de passe doit avoir au moins 6 caractère", maxMessage: "Le mot de passe ne doit pas faire plus de 20 caractères")]
     private ?string $password = null;
 
+    #[Assert\NotBlank(message: "La confirmation du mot de passe ne doit pas être vide")]
     private ?string $confirm = null;
 
 

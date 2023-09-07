@@ -13,10 +13,10 @@ class Characteristic
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     private ?string $libelle = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 20)]
     private ?string $info = null;
 
     #[ORM\ManyToOne(inversedBy: 'characteristics')]
