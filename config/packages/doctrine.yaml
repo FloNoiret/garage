@@ -1,7 +1,5 @@
 doctrine:
     dbal:
-        driver: 'pdo_pgsql'
-
         url: '%env(resolve:DATABASE_URL)%'
 
         # IMPORTANT: You MUST configure your server version,
@@ -29,10 +27,6 @@ when@test:
 
 when@prod:
     doctrine:
-        dbal:
-            driver: 'pdo_pgsql'
-            
-            url: '%env(resolve:DATABASE_URL)%'
         orm:
             auto_generate_proxy_classes: false
             proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'

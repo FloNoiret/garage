@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class TimeTable
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column]
     private ?int $id = null;
 
