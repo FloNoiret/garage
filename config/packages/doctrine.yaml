@@ -33,6 +33,14 @@ when@test:
 
 when@prod:
     doctrine:
+        dbal:
+            driver: 'pdo_pgsql'
+            server_version: '13'
+            charset: utf8mb4
+            default_table_options:
+                charset: utf8mb4
+                collate: utf8mb4_unicode_ci
+            url: '%env(resolve:DATABASE_URL)%'
         orm:
             auto_generate_proxy_classes: false
             proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
