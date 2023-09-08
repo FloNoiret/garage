@@ -12,7 +12,7 @@ class CommentPost
 
     /* Setting Form Variables */
 
-    #[ORM\Id()]
+    #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column(type: "integer")]
     private int $id;
