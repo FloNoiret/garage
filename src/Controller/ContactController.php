@@ -46,32 +46,23 @@ class ContactController extends AbstractController
 
     /* Write a message*/
     #[Route('/contact', name: 'contact')]
-    public function renderDemand(Request $request): Response
-    {
-        $contact_form = $this->createForm(ContactType::class);
-
-        return $this->render('contact/form.html.twig', [
-            'contact_form' => $contact_form->createView(),
-        ]);
-    }
-
-
-    #[Route('/process_contact', name: 'process_contact', methods: ["POST"])]
-    public function processDemand(Request $request, ManagerRegistry $doctrine): Response
+    public function renderDemand(Request $request, ManagerRegistry $doctrine): Response
     {
         $contact = new Contact();
         $contact_form = $this->createForm(ContactType::class, $contact);
-        $contact_form->handleRequest($request);
-
-        if ($contact_form->isSubmitted() && $contact_form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($contact);
-            $entityManager->flush();
-
-
-            return $this->redirectToRoute('thank_you');
+    
+        if ($request->isMethod('POST')) {
+            $contact_form->handleRequest($request);
+    
+            if ($contact_form->isSubmitted() && $contact_form->isValid()) {
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($contact);
+                $entityManager->flush();
+    
+                return $this->redirectToRoute('thank_you');
+            }
         }
-
+    
         return $this->render('contact/form.html.twig', [
             'contact_form' => $contact_form->createView(),
         ]);

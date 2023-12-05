@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity()]
 #[ORM\Table(name: "comment")]
@@ -18,15 +19,23 @@ class CommentPost
     private int $id;
 
     #[ORM\Column(type: "string", length: 60)]
+    #[Assert\NotBlank(message: "Le titre ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 60, minMessage: "Le titre doit avoir au moins 1 caractère", maxMessage: "Le titre ne doit pas faire plus de 60 caractères")]
+   
     private ?string $title = NULL;
 
     #[ORM\Column(type: "text", length: 300)]
+    #[Assert\NotBlank(message: "Le message ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 300, minMessage: "Le message doit avoir au moins 1 caractère", maxMessage: "Le message ne doit pas faire plus de 300 caractères")]
     private string $content;
 
     #[ORM\Column(type: "string", length: 60)]
+    #[Assert\NotBlank(message: "Le nom d'auteur ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 20, minMessage: "Le nom de l'auteur doit avoir au moins 1 caractère", maxMessage: "Le nom de l'auteur ne doit pas faire plus de 20 caractères")]
     private ?string $author;
 
     #[ORM\Column(type: "integer")]
+    #[Assert\NotBlank(message: "La note ne doit pas être vide")]
     private int $grade;
 
     #[ORM\Column(type: "boolean", length: 60)]

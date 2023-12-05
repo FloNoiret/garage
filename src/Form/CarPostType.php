@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 
 class CarPostType extends AbstractType
@@ -39,7 +40,17 @@ class CarPostType extends AbstractType
             ])
             ->add("price", NumberType::class, ["label" => "Prix", "required" => true])
             ->add("kilometer", NumberType::class, ["label" => "Kilométrage", "required" => true])
-            ->add("date", NumberType::class, ["label" => "Année de Mise en Circulation", "required" => true,  'attr' => ['maxlength' => 4]])
+            ->add("date", NumberType::class, [
+                "label" => "Année de Mise en Circulation",
+                "required" => true,
+                'attr' => ['maxlength' => 4],
+                "constraints" => [
+                    new Regex([
+                        "pattern" => "/^\d{4}$/",
+                        "message" => "L'année de mise en circulation doit contenir exactement 4 chiffres",
+                    ]),
+                ],
+            ])
             ->add("image", ImageType::class, ["label" => "Télécharger une image principale", "required" => true])
             ->add('picture', FileType::class, [
                 'label' => 'Ajouter des images à la galerie',

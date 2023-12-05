@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EquipmentRepository::class)]
 class Equipment
@@ -13,7 +14,9 @@ class Equipment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(type: "string", length: 40)]
+    #[Assert\NotBlank(message: "Le libellé ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 40, minMessage: "Le libellé doit avoir au moins 1 caractère", maxMessage: "Le libellé ne doit pas faire plus de 40 caractères")]
     private ?string $libelle = null;
 
     #[ORM\ManyToOne(inversedBy: 'equipments')]

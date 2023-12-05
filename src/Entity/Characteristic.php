@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\CharacteristicRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: CharacteristicRepository::class)]
 class Characteristic
@@ -13,10 +15,14 @@ class Characteristic
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(type: "string", length: 20)]
+    #[Assert\NotBlank(message: "Le libellé ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 20, minMessage: "Le libellé doit avoir au moins 1 caractère", maxMessage: "Le libellé ne doit pas faire plus de 20 caractères")]
     private ?string $libelle = null;
 
-    #[ORM\Column(length: 20)]
+    #[ORM\Column(type: "text", length: 20)]
+    #[Assert\NotBlank(message: "La description ne doit pas être vide")]
+    #[Assert\Length(min: 1, max: 20, minMessage: "La description doit avoir au moins 1 caractère", maxMessage: "La description ne doit pas faire plus de 20 caractères")]
     private ?string $info = null;
 
     #[ORM\ManyToOne(inversedBy: 'characteristics')]

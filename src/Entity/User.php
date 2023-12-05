@@ -20,7 +20,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: "L'identifiant ne doit pas être vide")]
+    #[Assert\NotBlank()]
+    #[Assert\Regex(pattern: "/^[a-zA-Z0-9_]+$/")]
     private ?string $username = null;
 
     #[ORM\Column]
@@ -31,11 +32,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank(message: "Le mot de passe ne doit pas être vide")]
-    #[Assert\Length(min: 6, minMessage: "Le mot de passe doit avoir au moins 6 caractère")]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 6)]
+    #[Assert\Regex(
+        pattern: "/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/"
+       
+    )]
     private ?string $password = null;
 
-    #[Assert\NotBlank(message: "La confirmation du mot de passe ne doit pas être vide")]
+
+    #[Assert\NotBlank()]
+    #[Assert\Regex(
+        pattern: "/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/",
+    )]
     private ?string $confirm = null;
 
 

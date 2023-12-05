@@ -21,6 +21,8 @@ class ContactType extends AbstractType
             ->add("fullName", TextType::class, array(
                 'attr' => array(
                     'placeholder' => 'Nom',
+                    'minlength' => 1, 
+                    'maxlength' => 50, 
                 ),
                 'label' => false,
                 "required" => true
@@ -28,20 +30,27 @@ class ContactType extends AbstractType
             ->add("email", EmailType::class, array(
                 'attr' => array(
                     'placeholder' => 'Email',
+                    'maxlength' => 180,
                 ),
                 'label' => false,
                 "required" => true
             ))
-            ->add('number', TelType::class, array(
-                'attr' => array(
+            ->add('number', TelType::class, [
+                'attr' => [
                     'placeholder' => 'Téléphone',
-                ),
+                    'pattern' => '^0[1-9]\d{8}$', // Set the regex pattern directly
+                    'title' => 'Le numéro de téléphone doit être au format français, par exemple : 0123456789',
+             
+                ],
                 'label' => false,
-                "required" => true
-            ))
+                'required' => true,
+            ])
+            
             ->add("subject", TextType::class, array(
                 'attr' => array(
                     'placeholder' => 'Sujet',
+                    'minlength' => 1, 
+                    'maxlength' => 100, 
                 ),
                 'label' => false,
                 "required" => true
@@ -49,6 +58,8 @@ class ContactType extends AbstractType
             ->add("message", TextareaType::class, array(
                 'attr' => array(
                     'placeholder' => 'Message',
+                    'minlength' => 1, 
+                    'maxlength' => 300, 
                 ),
                 'label' => false,
                 "required" => true

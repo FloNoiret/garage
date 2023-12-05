@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity()]
 #[ORM\Table(name: "contact")]
@@ -13,19 +14,32 @@ class Contact
     #[ORM\Column(type: 'integer')]
     private ?int $id;
 
-    #[ORM\Column(type: 'string', length: 50, nullable: true)]
+    #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 1, max: 50)]
     private ?string $fullName = null;
 
     #[ORM\Column(type: 'string', length: 180)]
+    #[Assert\NotBlank()]
+    #[Assert\Email()]
     private string $email;
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 1, max: 100)]
     private ?string $subject = null;
 
+
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 1, max: 300)]
     private string $message;
 
     #[ORM\Column(type: "string")]
+    #[Assert\NotBlank()]
+    #[Assert\Regex(
+        pattern: "/^0[1-9]\d{8}$/",
+    )]
     private string $number;
 
     #[ORM\Column(type: "boolean", length: 60)]
