@@ -43,3 +43,7 @@
 *.o
 *.pyc
 *.dll
+
+
+###< Ignore internal file ###
+/SQL/

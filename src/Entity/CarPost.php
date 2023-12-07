@@ -16,7 +16,6 @@ class CarPost
 {
 
     /* Setting Form Variables */
-
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column(type: "integer")]
@@ -27,7 +26,6 @@ class CarPost
     /*Validation avec Form Constraints "Assert"*/
     #[Assert\NotBlank(message: "Le titre ne doit pas être vide")]
     #[Assert\Length(min: 1, max: 60, minMessage: "Le titre doit avoir au moins 1 caractères", maxMessage: "Le titre ne doit pas faire plus de 60 caractères")]
-
     private ?string $title = NULL;
 
     #[ORM\Column(type: "text", length: 300)]
