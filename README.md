@@ -1,6 +1,5 @@
 # Réalisation du site web pour le Garage V.Parrot - Sujet ECF
 
-Lien vers le site web : [Cliquez ici](https://garage-auto-parrot-a6b7b8f7c8b4.herokuapp.com/)
 
 
 # Documentations Techniques : 
